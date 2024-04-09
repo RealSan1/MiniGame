@@ -33,6 +33,7 @@ import java.util.Date;
 public class FindColor extends AppCompatActivity {
 
     private static final int pic_id = 123;
+    //아이디 생성
     Button Cbtn;
     ImageView imageView;
 
