@@ -99,11 +99,14 @@ public class FindColor extends AppCompatActivity {
             FileOutputStream fos = openFileOutput("image.jpg", Context.MODE_PRIVATE);
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
             fos.close();
-            Toast.makeText(this, "이미지가 JPEG 파일로 내부 저장소에 저장되었습니다.", Toast.LENGTH_SHORT).show();
             Log.d("FilePath", "이미지 파일이 저장된 경로: " + imageFile.getAbsolutePath());
         } catch (IOException e) {
             e.printStackTrace();
-            Toast.makeText(this, "이미지 저장 실패", Toast.LENGTH_SHORT).show();
+            Log.d("FilePath", "이미지 저장 실패");
         }
+    }
+
+    public void Back(View view) {
+        finish();
     }
 }
