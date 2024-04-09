@@ -9,39 +9,35 @@
 
     <Button
         android:id="@+id/Cbtn"
-        android:layout_width="88dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="170dp"
-        android:layout_marginEnd="154dp"
-        android:layout_marginBottom="5dp"
-        android:onClick="capturePhoto"
-        android:text="카메라"
+        android:layout_width="107dp"
+        android:layout_height="70dp"
+        app:icon="@android:drawable/ic_menu_camera"
+        app:iconSize="60dp"
+        app:iconTint="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.921" />
+        app:layout_constraintVertical_bias="0.842"
+        app:strokeColor="#FFFFFF" />
 
     <LinearLayout
-        android:layout_width="409dp"
-        android:layout_height="532dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="1dp"
-        android:layout_marginEnd="1dp"
-        android:orientation="horizontal"
+        android:layout_width="0dp"
+        android:layout_height="502dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:srcCompat="@color/design_default_color_secondary" />
+
     </LinearLayout>
 
     <Button
@@ -50,11 +46,22 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="49dp"
         android:layout_marginEnd="30dp"
-        android:layout_marginBottom="56dp"
-        android:text="Button"
+        android:layout_marginBottom="28dp"
+        android:text="제출"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/Cbtn"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.388"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="152dp"
+        android:layout_marginTop="28dp"
+        android:onClick="Back"
+        android:text="Back"
+        app:layout_constraintStart_toEndOf="@+id/button2"
+        app:layout_constraintTop_toBottomOf="@+id/Cbtn" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

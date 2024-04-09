@@ -1,6 +1,8 @@
 package com.inhatc.minigame_application;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,5 +22,10 @@ public class SelectGameActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+    }
+
+    public void Find_Color(View view) {
+        Intent intent = new Intent(getApplicationContext(), FindColor.class);
+        startActivity(intent);
     }
 }

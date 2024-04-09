@@ -18,6 +18,7 @@
         android:layout_marginTop="80dp"
         android:layout_marginEnd="115dp"
         android:background="@drawable/buttonshape"
+        android:onClick="Find_Color"
         android:text="색깔 맞추기"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
