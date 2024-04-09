@@ -10,13 +10,15 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.inhatc.minigame_application.Pick;
 
 import java.io.File;
 
-public class minigame_result extends AppCompatActivity {
+public class minigame_result extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +28,8 @@ public class minigame_result extends AppCompatActivity {
 
         TextView textView = findViewById(R.id.score);
         ImageView imageView = findViewById(R.id.resultimg);
+        Button backBtn = findViewById(R.id.mini_button);
+        backBtn.setOnClickListener(this);
         // 파일 경로 설정
         String filePath = getFilesDir() + File.separator + "image.jpg";
 
@@ -44,5 +48,10 @@ public class minigame_result extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+    }
+
+    @Override
+    public void onClick(View view) {
+        finish();
     }
 }

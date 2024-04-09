@@ -25,13 +25,14 @@
         android:layout_height="48dp"
         android:layout_marginStart="115dp"
 
-        android:layout_marginTop="580dp"
+        android:layout_marginTop="556dp"
         android:layout_marginEnd="115dp"
         android:background="@drawable/buttonshape"
         android:text="랭킹 보기"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -45,12 +46,15 @@
         android:layout_marginTop="480dp"
         android:layout_marginEnd="115dp"
         android:background="@drawable/buttonshape"
+        android:onClick="SelectGames"
         android:text="게임 플레이"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/btnShowRanking"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
