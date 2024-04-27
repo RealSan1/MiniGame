@@ -1,18 +1,14 @@
 package com.inhatc.minigame_application;
 
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.os.Environment;
 import android.util.Log;
 
-import java.io.File;
+public class PickColor {
 
-public class Pick {
+    public int pick(Bitmap bitmap, int RGB) {
 
-    public int pick(Bitmap bitmap) {
-
-        int targetColor = Color.rgb(51, 153, 153);
+        int targetColor = RGB;
         int score;
 
         ColorAndCoordinate closestColorAndCoordinate = findClosestColorAndCoordinate(bitmap, targetColor);

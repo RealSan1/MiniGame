@@ -26,7 +26,7 @@
             android:name=".MainSelectActivity"
             android:exported="false" />
         <activity
-            android:name=".minigame_result"
+            android:name=".FindColorResult"
             android:exported="false" />
         <activity
             android:name=".FindColor"

@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#4193FC"
     tools:context=".FindColor">
 
     <Button
@@ -32,11 +33,19 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0">
 
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="■"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="48sp" />
+
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:srcCompat="@color/design_default_color_secondary" />
+            android:layout_height="match_parent" />
 
     </LinearLayout>
 
