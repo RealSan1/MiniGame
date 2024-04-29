@@ -22,7 +22,7 @@ import com.inhatc.minigame_application.Pick;
 import java.io.File;
 
 public class minigame_result extends AppCompatActivity {
-
+    private SocketThread skThread = SocketThread.getInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,8 +47,9 @@ public class minigame_result extends AppCompatActivity {
         textView.setText(String.valueOf(a));
         //점수 표현
         EditText txtName = findViewById(R.id.txtName);
-        Button btn_score = (Button)findViewById(R.id.btnScoreSave);
-        btn_score.setOnClickListener(new View.OnClickListener() {
+        Button btn_scoreSave = (Button)findViewById(R.id.btnScoreSave);
+
+        btn_scoreSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //DB연결부
@@ -57,7 +58,14 @@ public class minigame_result extends AppCompatActivity {
                 if(playerName.isEmpty()){
                     Toast.makeText(minigame_result.this, "이름을 입력해주세요",Toast.LENGTH_SHORT).show();
                 }else{
-                    Toast.makeText(minigame_result.this,"성공적으로 등록되었습니다.",Toast.LENGTH_SHORT).show();
+                    //이름,점수,게임이름 데이터 전송 후 DB삽입
+                    int result = skThread.sendDataToServer(playerName,a,"색깔 맞추기 게임");
+                    //result=1 입력 성공, 2 닉네임 중복
+                    if(result == 1){
+                        Toast.makeText(minigame_result.this,"성공적으로 등록되었습니다.",Toast.LENGTH_SHORT).show();
+                    }else{
+                        Toast.makeText(minigame_result.this,"서버에러.",Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });
