@@ -86,19 +86,39 @@ public class SocketThread extends Thread{
 
     public synchronized int sendDataToServer(String name, int score, String gamename){
         try{
-            System.out.println("메서드 진입 성공");
+            System.out.println("점수 삽입 메서드 진입 성공");
             outData = "2"+","+name + "," + score + "," + gamename;
             ckMethod=1;
             trigger=true;//스레드 동작 시작
             System.out.println("ThAccess="+ThAccess+"   ckMethod="+ckMethod);
             while(ThAccess.get() != 1){//아직 스레드가 끝나지 않음
-                //System.out.println("소켓스레드 진행 중 wait");
+                //System.out.println("소켓스레드 진행 중 메소드 wait");
                 wait();
             }
-            System.out.println("메소드 끝");
+            System.out.println("점수 삽입 메소드 끝");
             ThAccess.set(0);
             ckMethod=0;
         }catch(InterruptedException e) {
+            e.printStackTrace();
+        }
+        return 1;
+    }
+
+    public synchronized int SelectRankList(){
+        try{
+            System.out.println("랭킹 가져오기 메서드 진입 성공");
+            outData = "3"+","+"Select Ranking";//3일경우 SQL SELECT문 실행
+            ckMethod=1;
+            trigger=true;//스레드 동작 시작
+            System.out.println("ThAccess="+ThAccess+"  ckMethod="+ckMethod);
+            while(ThAccess.get() != 1){
+                //System.out.println("소켓스레드 진행 중 메소드 wait");
+                wait();
+            }
+            System.out.println("랭킹 가져오기 메소드 끝");
+            ThAccess.set(0);
+            ckMethod=0;
+        }catch(InterruptedException e){
             e.printStackTrace();
         }
         return 1;
