@@ -12,52 +12,42 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 public class RankListAdapter extends RecyclerView.Adapter<RankListAdapter.ViewHolder> {
-    Context mContext;
-    ArrayList<RankListItem> items = new ArrayList();
+    Context context;
+    public RankListItem[] listData;
 
-    public RankListAdapter(Context mContext){
-        this.mContext = mContext;
+    public RankListAdapter(Context context, RankListItem[] listData){
+        this.context = context;
+        this.listData = listData;
     }
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View itemView = inflater.inflate(R.layout.listitem, parent, false);
-
-        return new ViewHolder(itemView);
+    public RankListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.listitem,parent,false);
+        return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        RankListItem item = items.get(position);
-        holder.setItem(item);
+    public void onBindViewHolder(@NonNull RankListAdapter.ViewHolder holder, int position) {
+        holder.txtName.setText(listData[position].getName());
+        holder.txtRank.setText(listData[position].getRank());
+        holder.txtScore.setText(listData[position].getScore());
     }
 
     @Override
     public int getItemCount() {
-        return items.size();
+        return listData.length;
     }
 
-    public void addItem(RankListItem item){
-        items.add(item);
-    }
-
-    static class ViewHolder extends RecyclerView.ViewHolder{
-        TextView ItemRank;
-        TextView ItemName;
-        TextView ItemScore;
-
-        public ViewHolder(@NonNull View itemView){
+    public class ViewHolder extends RecyclerView.ViewHolder{
+        TextView txtName;
+        TextView txtRank;
+        TextView txtScore;
+        public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            ItemRank = itemView.findViewById(R.id.ItemRank);
-            ItemName = itemView.findViewById(R.id.ItemName);
-            ItemScore = itemView.findViewById(R.id.ItemScore);
-        }
-        public void setItem(RankListItem item){
-            ItemRank.setText(item.rank);
-            ItemName.setText(item.name);
-            ItemScore.setText(item.score);
+            txtName = itemView.findViewById(R.id.ItemName);
+            txtRank = itemView.findViewById(R.id.ItemRank);
+            txtScore = itemView.findViewById(R.id.ItemScore);
         }
     }
 }

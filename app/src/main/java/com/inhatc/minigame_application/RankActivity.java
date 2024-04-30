@@ -14,9 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 public class RankActivity extends AppCompatActivity {
-    ArrayList<RankListItem> RL = new ArrayList<>();
-    RecyclerView Rank_List;
-    RankListAdapter adapter;
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,14 +22,19 @@ public class RankActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_rank);
 
-        Rank_List=findViewById(R.id.recyclerView);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL,false);
-        Rank_List.setLayoutManager(layoutManager);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        RankListAdapter adapter;
 
-        adapter = new RankListAdapter(getApplicationContext());
-        Rank_List.setAdapter(adapter);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        adapter.addItem(new RankListItem("이름",123,123));
+        RankListItem[] listData = new RankListItem[]{
+                new RankListItem("이름",1,123),
+                new RankListItem("이름2",2,122)
+        };
+
+        adapter = new RankListAdapter(this,listData);
+        recyclerView.setAdapter(adapter);
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
