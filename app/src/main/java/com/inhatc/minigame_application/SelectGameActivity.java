@@ -28,4 +28,9 @@ public class SelectGameActivity extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), FindColor.class);
         startActivity(intent);
     }
+
+    public void MsTest(View view){
+        Intent intent = new Intent(getApplicationContext(), MsTest.class);
+        startActivity(intent);
+    }
 }

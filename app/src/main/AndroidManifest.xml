@@ -20,6 +20,9 @@
         android:theme="@style/Theme.MiniGame_Application"
         tools:targetApi="31">
         <activity
+            android:name=".MsTest"
+            android:exported="false" />
+        <activity
             android:name=".SelectGameActivity"
             android:exported="false" />
         <activity
