@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
             skThread=null;
         }
     }
+
     public void MainClick(View view) {
         Intent intent = new Intent(getApplicationContext(), MainSelectActivity.class);
         startActivity(intent);

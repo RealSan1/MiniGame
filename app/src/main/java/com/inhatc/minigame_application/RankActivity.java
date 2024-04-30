@@ -1,6 +1,5 @@
 package com.inhatc.minigame_application;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
@@ -11,15 +10,16 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-
 public class RankActivity extends AppCompatActivity {
 
-    @SuppressLint("MissingInflatedId")
+    private SocketThread skThread;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_rank);
+
+        skThread = SocketThread.getInstance();
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         RankListAdapter adapter;
@@ -28,11 +28,11 @@ public class RankActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         RankListItem[] listData = new RankListItem[]{
-                new RankListItem("이름",1,123),
-                new RankListItem("이름2",2,122)
+                new RankListItem("이름1",1,100),
+                new RankListItem("이름2",2,90)
         };
 
-        adapter = new RankListAdapter(this,listData);
+        adapter = new RankListAdapter(this, listData);
         recyclerView.setAdapter(adapter);
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {

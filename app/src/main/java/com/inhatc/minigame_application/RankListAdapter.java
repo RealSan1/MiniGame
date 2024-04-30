@@ -23,15 +23,15 @@ public class RankListAdapter extends RecyclerView.Adapter<RankListAdapter.ViewHo
     @NonNull
     @Override
     public RankListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.listitem,parent,false);
+        View view = LayoutInflater.from(context).inflate(R.layout.activity_rank_list_item,parent,false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull RankListAdapter.ViewHolder holder, int position) {
         holder.txtName.setText(listData[position].getName());
-        holder.txtRank.setText(listData[position].getRank());
-        holder.txtScore.setText(listData[position].getScore());
+        holder.txtRank.setText(String.valueOf(listData[position].getRank()));
+        holder.txtScore.setText(String.valueOf(listData[position].getScore()));
     }
 
     @Override
@@ -45,9 +45,9 @@ public class RankListAdapter extends RecyclerView.Adapter<RankListAdapter.ViewHo
         TextView txtScore;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            txtName = itemView.findViewById(R.id.ItemName);
-            txtRank = itemView.findViewById(R.id.ItemRank);
-            txtScore = itemView.findViewById(R.id.ItemScore);
+            txtName = itemView.findViewById(R.id.txtName);
+            txtRank = itemView.findViewById(R.id.txtRank);
+            txtScore = itemView.findViewById(R.id.txtScore);
         }
     }
 }
