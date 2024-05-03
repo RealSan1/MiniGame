@@ -11,11 +11,11 @@
 
     <TextView
         android:id="@+id/MsTestEx"
-        android:layout_width="312dp"
-        android:layout_height="443dp"
+        android:layout_width="340dp"
+        android:layout_height="wrap_content"
         android:background="#888686"
         android:padding="16dp"
-        android:text="시각적 자극에 대한 반응 속도를 알 수 있는 아주 간단한 테스트 빨간색 박스가 초록색으로 변할 때 최대한 빨리 클릭을 해주세요. 시각적 자극에 대한 반응 속도는 평균 250밀리초(0.25초) 입니다. 대부분 훈련을 통해 200밀리초(0.2초)에 도달할 수 있죠. 시각적 자극 반응 속도의 최고 기록은 120밀리초(0.12초) 정도로 굉장히 빠릅니다."
+        android:text="시각적 자극에 대한 반응 속도를 알 수 있는 간단한 테스트입니다. \n\n 빨간색 박스가 초록색으로 변할 때 최대한 빨리 클릭을 해주세요. \n\n 시각적 자극에 대한 반응 속도는 평균 0.25초 입니다.\n\n 대부분 훈련을 통해 0.2초에 \n도달할 수 있죠. \n\n 시각적 자극 반응 속도의 \n최고 기록은 0.12초 정도로\n 굉장히 빠릅니다."
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="23sp"
@@ -28,6 +28,21 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.545"
         tools:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/txtTouch"
+        android:layout_width="303dp"
+        android:layout_height="36dp"
+        android:layout_marginBottom="32dp"
+        android:text="화면을 터치하세요"
+        android:textAlignment="center"
+        android:textColor="#DEFFFFFF"
+        android:textSize="24sp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:visibility="invisible"/>
 
     <Button
         android:id="@+id/MsTestBtn"
