@@ -33,11 +33,12 @@
         android:id="@+id/MsTestBtn"
         android:layout_width="245dp"
         android:layout_height="253dp"
-        android:background="#FF3232"
+        android:background="#FF0000"
         android:text="Click"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="75dp"
+
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -74,6 +75,37 @@
         app:layout_constraintBottom_toTopOf="@+id/MsTestBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:visibility="visible" />
+
+    <Button
+        android:id="@+id/MsStartBtn"
+        android:layout_width="88dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:backgroundTint="#94F128"
+        android:text="Start"
+        android:textStyle="bold"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/MsTestBtn"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/MsTextChance"
+        android:layout_width="0dp"
+        android:layout_height="49dp"
+        android:layout_marginBottom="140dp"
+        android:text="□ □ □ "
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="40dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         tools:visibility="visible" />
 </androidx.constraintlayout.widget.ConstraintLayout>
