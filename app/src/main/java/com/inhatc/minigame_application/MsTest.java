@@ -20,7 +20,7 @@ import java.util.List;
 
 public class MsTest extends AppCompatActivity implements View.OnClickListener{
 
-    TextView Text, TextEx, TextChance;
+    TextView Text, TextEx, TextTouch, TextChance;
     Button Btn, StartBtn;
     Random random;
     int min = 3;
@@ -43,6 +43,7 @@ public class MsTest extends AppCompatActivity implements View.OnClickListener{
 
         Text = (TextView)findViewById(R.id.MsText);
         TextEx = (TextView)findViewById(R.id.MsTestEx); //설명
+        TextTouch = (TextView)findViewById(R.id.txtTouch);
         TextChance = (TextView)findViewById(R.id.MsTextChance); //기회
         Btn = (Button)findViewById(R.id.MsTestBtn);
         StartBtn = (Button)findViewById(R.id.MsStartBtn);
@@ -95,6 +96,8 @@ public class MsTest extends AppCompatActivity implements View.OnClickListener{
         TextChance.setVisibility(View.VISIBLE);
         TextEx.setVisibility(View.INVISIBLE);
         TextEx.setEnabled(false);
+        TextTouch.setVisibility(View.INVISIBLE);
+        TextTouch.setEnabled(false);
     }
 
     @Override
