@@ -30,6 +30,7 @@ public class SocketThread extends Thread{
     //private static int ThAccess=0;
     private static String outData = null;
     private volatile static boolean trigger = false;
+    private volatile static String strInData = null;
 
     @Override
     public void run() {
@@ -66,6 +67,7 @@ public class SocketThread extends Thread{
                 out.println(outData);
                 System.out.println("스레드 슬립 탈출");
                 String inData = in.readLine();
+                strInData = inData;
 
                 if(trigger) {
                     synchronized (this) {
@@ -82,6 +84,7 @@ public class SocketThread extends Thread{
             System.out.println("스레드 전체 에러");
             e.printStackTrace();
         }
+        strInData=null;
     }
 
     public synchronized int sendDataToServer(String name, int score, String gamename){
@@ -104,7 +107,7 @@ public class SocketThread extends Thread{
         return 1;
     }
 
-    public synchronized int SelectRankList(){
+    public synchronized String SelectRankList(){
         try{
             System.out.println("랭킹 가져오기 메서드 진입 성공");
             outData = "3"+","+"Select Ranking";//3일경우 SQL SELECT문 실행
@@ -121,7 +124,7 @@ public class SocketThread extends Thread{
         }catch(InterruptedException e){
             e.printStackTrace();
         }
-        return 1;
+        return strInData;
     }
 
 }
