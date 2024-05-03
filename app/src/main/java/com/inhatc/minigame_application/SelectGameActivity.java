@@ -2,6 +2,7 @@ package com.inhatc.minigame_application;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import androidx.activity.EdgeToEdge;
@@ -27,5 +28,10 @@ public class SelectGameActivity extends AppCompatActivity {
     public void Find_Color(View view) {
         Intent intent = new Intent(getApplicationContext(), FindColor.class);
         startActivity(intent);
+    }
+
+    public void MsTest(View view){
+        Intent MsTestIntent = new Intent(getApplicationContext(), MsTest.class);
+        startActivity(MsTestIntent);
     }
 }

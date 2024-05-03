@@ -25,9 +25,10 @@
         android:layout_height="48dp"
         android:layout_marginStart="115dp"
 
-        android:layout_marginTop="556dp"
+        android:layout_marginTop="568dp"
         android:layout_marginEnd="115dp"
         android:background="@drawable/buttonshape"
+        android:onClick="SelectRank"
         android:text="랭킹 보기"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
