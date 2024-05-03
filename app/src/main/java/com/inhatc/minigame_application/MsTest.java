@@ -119,7 +119,6 @@ public class MsTest extends AppCompatActivity implements View.OnClickListener{
             Btn.setBackgroundColor(Color.BLUE);
         }
     }
-
     public void Case(int A){
         int B = A;
         switch (B) {
