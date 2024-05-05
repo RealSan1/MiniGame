@@ -24,13 +24,14 @@ public class MainSelectActivity extends AppCompatActivity {
         });
     }
 
-    public void SelectRank(View view){
-        Intent intent = new Intent(getApplicationContext(), RankActivity.class);
-        startActivity(intent);
-    }
+//    public void SelectRank(View view){
+//        Intent intent = new Intent(getApplicationContext(), RankActivity.class);
+//        startActivity(intent);
+//    }
 
     public void SelectGames(View view) {
         Intent intent = new Intent(getApplicationContext(), SelectGameActivity.class);
         startActivity(intent);
     }
+
 }
