@@ -24,52 +24,54 @@ public class RankActivity extends AppCompatActivity {
         setContentView(R.layout.activity_rank);
 
         skThread = SocketThread.getInstance();
-        String[] Data = ParseData(skThread.SelectRankList());
+        String[] jsonData = ParseData(skThread.SelectRankList());
 
+        /*
+        for(int i = 0; i<jsonData.length; i+=4){
+            System.out.println("jsonData["+i+"]"+jsonData[i]);
+            System.out.println("jsonData["+(i+1)+"]"+jsonData[i+1]);
+            System.out.println("jsonData["+(i+2)+"]"+jsonData[i+2]);
+            System.out.println("jsonData["+(i+3)+"]"+jsonData[i+3]);
+        }
+        */
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         RankListAdapter adapter;
 
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        /*
         RankListItem[] listData = new RankListItem[]{
                 new RankListItem("이름",1,100),
                 new RankListItem("이름2", 2, 90)
-        };
+        };*/
 
-        /*RankListItem[] listData = new RankListItem[Data.length/4];
-        for(int i = 0; i<Data.length; i+=4){
-            listData[i/4] = new RankListItem(Data[i+1], Integer.parseInt(Data[i+3]), Integer.parseInt(Data[i+2]));
-        }*/
+        RankListItem[] listData = new RankListItem[jsonData.length/4];
+        for(int i = 0; i<jsonData.length/4; i++){
+            listData[i] = new RankListItem(jsonData[i+1], Integer.parseInt(jsonData[i+2]), Integer.parseInt(jsonData[i+3]));
+        }
 
         adapter = new RankListAdapter(this, listData);
         recyclerView.setAdapter(adapter);
-
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
     }
 
     protected String[] ParseData(String json){
+        System.out.println("json데이터 파싱 중 : "+json);
         try{
             JSONArray jsonArray = new JSONArray(json);
             String[] jsonary = new String[jsonArray.length()*4];
-            for(int i = 0; i<jsonArray.length()*4; i++){
-                JSONObject jsonObject = jsonArray.getJSONObject(i);
-                int code = jsonObject.getInt("code");
-                String userName = jsonObject.getString("userName");
-                int score = jsonObject.getInt("score");
-                int rank = jsonObject.getInt("rank");
-                jsonary[i] = Integer.toString(code);
+
+            for(int i = 0; i<jsonary.length; i++){
+                jsonary[i] = jsonArray.getJSONObject(i).getString("code");
                 i++;
-                jsonary[i] = userName;
+                jsonary[i] = jsonArray.getJSONObject(i).getString("userName");
                 i++;
-                jsonary[i] = Integer.toString(score);
+                jsonary[i] = jsonArray.getJSONObject(i).getString("score");
                 i++;
-                jsonary[i] = Integer.toString(rank);
+                jsonary[i] = jsonArray.getJSONObject(i).getString("rank");
+                System.out.println("json : "+jsonary[i-3]+" "+jsonary[i-2]+" "+jsonary[i-1]+" "+jsonary[i]);
             }
+
             return jsonary;
         }catch(JSONException e){
             e.printStackTrace();
