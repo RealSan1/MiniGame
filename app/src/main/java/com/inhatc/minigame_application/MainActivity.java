@@ -19,11 +19,6 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
-        DBHelper helper;
-        SQLiteDatabase db;
-        helper = new DBHelper(MainActivity.this, "newdb.db",null,1);
-        db = helper.getWritableDatabase();
-        helper.onCreate(db);
 
         //소켓 스레드 생성 후 시작(앱 시작 시 서버와 접속)
         skThread = SocketThread.getInstance();
@@ -49,4 +44,6 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), MainSelectActivity.class);
         startActivity(intent);
     }
+
+
 }
