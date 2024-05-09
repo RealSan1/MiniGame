@@ -48,7 +48,7 @@ public class RankActivity extends AppCompatActivity {
 
         RankListItem[] listData = new RankListItem[jsonData.length/4];
         for(int i = 0; i<jsonData.length/4; i++){
-            listData[i] = new RankListItem(jsonData[i+1], Integer.parseInt(jsonData[i+2]), Integer.parseInt(jsonData[i+3]));
+            listData[i] = new RankListItem(jsonData[i*4+1], Integer.parseInt(jsonData[i*4+3]), Integer.parseInt(jsonData[i*4+2]));
         }
 
         adapter = new RankListAdapter(this, listData);
@@ -61,15 +61,13 @@ public class RankActivity extends AppCompatActivity {
             JSONArray jsonArray = new JSONArray(json);
             String[] jsonary = new String[jsonArray.length()*4];
 
-            for(int i = 0; i<jsonary.length; i++){
-                jsonary[i] = jsonArray.getJSONObject(i).getString("code");
-                i++;
-                jsonary[i] = jsonArray.getJSONObject(i).getString("userName");
-                i++;
-                jsonary[i] = jsonArray.getJSONObject(i).getString("score");
-                i++;
-                jsonary[i] = jsonArray.getJSONObject(i).getString("rank");
-                System.out.println("json : "+jsonary[i-3]+" "+jsonary[i-2]+" "+jsonary[i-1]+" "+jsonary[i]);
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                jsonary[i * 4] = jsonObject.getString("code");
+                jsonary[i * 4 + 1] = jsonObject.getString("userName");
+                jsonary[i * 4 + 2] = jsonObject.getString("score");
+                jsonary[i * 4 + 3] = jsonObject.getString("rank");
+                System.out.println("json : " + jsonary[i * 4] + " " + jsonary[i * 4 + 1] + " " + jsonary[i * 4 + 2] + " " + jsonary[i * 4 + 3]);
             }
 
             return jsonary;

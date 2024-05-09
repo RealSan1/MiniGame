@@ -3,6 +3,7 @@ package com.inhatc.minigame_application;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.view.View;
 
 import androidx.activity.EdgeToEdge;
@@ -19,6 +20,9 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+
+        StrictMode.setThreadPolicy(policy);
 
         //소켓 스레드 생성 후 시작(앱 시작 시 서버와 접속)
         skThread = SocketThread.getInstance();

@@ -46,7 +46,7 @@ public class SocketThread extends Thread{
                     System.out.println("접근");
                     while(!trigger) {
                         try {
-                            Thread.sleep(30000);
+                            Thread.sleep(1000);
                             System.out.println("스레드 슬립중..");
                         }catch(InterruptedException e) {
                             e.printStackTrace();
