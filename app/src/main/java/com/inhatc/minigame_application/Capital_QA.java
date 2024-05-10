@@ -16,12 +16,18 @@ public class Capital_QA extends AppCompatActivity {
     private static DBHelper dbHelper;
     private static TextView question;
     private static TextView answer;
+    private SocketThread skThread;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_capital_qa);
+
+        skThread = SocketThread.getInstance();
+
+        String data = skThread.getq_a();
+        System.out.println(data);
 
         //DB의 인스턴스 가져옴
         dbHelper = DBHelper.getInstance(getApplicationContext());

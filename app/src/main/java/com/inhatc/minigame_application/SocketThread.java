@@ -30,7 +30,10 @@ public class SocketThread extends Thread{
     //private static int ThAccess=0;
     private static String outData = null;
     private volatile static boolean trigger = false;
+    private volatile static boolean rankMethod = false;
+    private volatile static boolean q_aMethod = false;
     private volatile static String strInData = null;
+    private volatile static String q_aData = null;
 
     @Override
     public void run() {
@@ -67,7 +70,11 @@ public class SocketThread extends Thread{
                 out.println(outData);
                 System.out.println("스레드 슬립 탈출");
                 String inData = in.readLine();
-                strInData = inData;
+                if(rankMethod){
+                    strInData = inData;
+                }else if(q_aMethod){
+                    q_aData = inData;
+                }
 
                 if(trigger) {
                     synchronized (this) {
@@ -109,6 +116,7 @@ public class SocketThread extends Thread{
 
     public synchronized String SelectRankList(){
         try{
+            rankMethod = true;
             System.out.println("랭킹 가져오기 메서드 진입 성공");
             outData = "3"+","+"Select Ranking";//3일경우 SQL SELECT문 실행
             ckMethod=1;
@@ -124,7 +132,30 @@ public class SocketThread extends Thread{
         }catch(InterruptedException e){
             e.printStackTrace();
         }
+        rankMethod = false;
         return strInData;
+    }
+
+    public synchronized String getq_a(){
+        try{
+            q_aMethod = true;
+            System.out.println("문제와 답 가져오기 메서드 진입 성공");
+            outData = "4"+","+"get_q_a";
+            ckMethod = 1;
+            trigger = true;
+            System.out.println("ThAccess="+ThAccess+"  ckMethod="+ckMethod);
+            while(ThAccess.get() != 1){
+                //System.out.println("소켓스레드 진행 중 메소드 wait");
+                wait();
+            }
+            System.out.println("문제와 답 가져오기 메소드 끝");
+            ThAccess.set(0);
+            ckMethod=0;
+        }catch(InterruptedException e){
+            e.printStackTrace();
+        }
+        q_aMethod = false;
+        return q_aData;
     }
 
 }
