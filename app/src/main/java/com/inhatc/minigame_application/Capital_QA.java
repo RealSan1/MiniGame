@@ -16,6 +16,7 @@ public class Capital_QA extends AppCompatActivity {
     private static DBHelper dbHelper;
     private static TextView question;
     private static TextView answer;
+    private SocketThread skThread;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +24,15 @@ public class Capital_QA extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_capital_qa);
 
-        //DB의 인스턴스 가져옴
+        skThread = SocketThread.getInstance();
+
+        //서버로 부터 받아온 mysql json형식의 데이터
+        //mysql테이블 capital_qa 테이블 만들어놓음
+        String data = skThread.getq_a();
+        System.out.println(data);
+
+
+        //DB의 인스턴스 가져옴(로컬전용DB) 쓰고싶으면 쓰고 안쓰고 싶으면 안쓰고
         dbHelper = DBHelper.getInstance(getApplicationContext());
         insert_qa(dbHelper);
 
