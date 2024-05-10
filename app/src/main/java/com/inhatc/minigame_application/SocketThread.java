@@ -136,6 +136,7 @@ public class SocketThread extends Thread{
         return strInData;
     }
 
+    //서버에 capital_qa 테이블 데이터 요청하는 메소드
     public synchronized String getq_a(){
         try{
             q_aMethod = true;
