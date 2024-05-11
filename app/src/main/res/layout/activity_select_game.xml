@@ -10,11 +10,9 @@
 
     <android.widget.Button
         android:id="@+id/btnSimilarColors"
-
         android:layout_width="0dp"
         android:layout_height="48dp"
         android:layout_marginStart="115dp"
-
         android:layout_marginTop="80dp"
         android:layout_marginEnd="115dp"
         android:background="@drawable/buttonshape"
@@ -29,11 +27,9 @@
 
     <android.widget.Button
         android:id="@+id/btnMsTest"
-
         android:layout_width="0dp"
         android:layout_height="48dp"
         android:layout_marginStart="115dp"
-
         android:layout_marginTop="40dp"
         android:layout_marginEnd="115dp"
         android:background="@drawable/buttonshape"
@@ -48,11 +44,9 @@
 
     <android.widget.Button
         android:id="@+id/btnCapital"
-
         android:layout_width="0dp"
         android:layout_height="48dp"
         android:layout_marginStart="115dp"
-
         android:layout_marginTop="40dp"
         android:layout_marginEnd="115dp"
         android:background="@drawable/buttonshape"
@@ -62,6 +56,23 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnMsTest" />
+
+    <android.widget.Button
+        android:id="@+id/btnBlock"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="115dp"
+        android:layout_marginTop="124dp"
+        android:layout_marginEnd="115dp"
+        android:background="@drawable/buttonshape"
+        android:onClick="BlockPuzzle"
+        android:text="블럭 맞추기"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnMsTest" />
 

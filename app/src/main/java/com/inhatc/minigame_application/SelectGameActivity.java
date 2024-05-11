@@ -38,4 +38,9 @@ public class SelectGameActivity extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), Capital_QA.class);
         startActivity(intent);
     }
+
+    public void BlockPuzzle(View view){
+        Intent intent = new Intent(getApplicationContext(), BlockPuzzle.class);
+        startActivity(intent);
+    }
 }
