@@ -10,8 +10,6 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import java.util.List;
-
 public class Capital_QA extends AppCompatActivity {
     private static DBHelper dbHelper;
     private static TextView question;
@@ -47,10 +45,10 @@ public class Capital_QA extends AppCompatActivity {
         String questions = cursor.getString(quesitonIndex);
         String answers = cursor.getString(answerIndex);
 
-        question = (TextView)findViewById(R.id.textView2);
+        question = (TextView)findViewById(R.id.txtQuestion);
         question.setText(questions);
 
-        answer = (TextView)findViewById(R.id.textView3);
+        answer = (TextView)findViewById(R.id.txtAnswer);
         answer.setText(answers);
         }
 
