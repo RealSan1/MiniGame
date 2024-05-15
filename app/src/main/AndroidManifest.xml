@@ -24,6 +24,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".NumberOfQuestion"
+            android:exported="false" />
+        <activity
             android:name=".BlockPuzzle"
             android:exported="false" />
         <activity
