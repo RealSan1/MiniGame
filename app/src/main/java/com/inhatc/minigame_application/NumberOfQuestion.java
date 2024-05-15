@@ -10,13 +10,13 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class SelectGameActivity extends AppCompatActivity {
+public class NumberOfQuestion extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_select_game);
+        setContentView(R.layout.activity_number_of_question);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -24,18 +24,24 @@ public class SelectGameActivity extends AppCompatActivity {
         });
     }
 
-    public void Find_Color(View view) {
-        Intent intent = new Intent(getApplicationContext(), FindColor.class);
+    public void Select_10(View view) {
+        Intent intent = new Intent(this, Capital_QA.class);
+        intent.putExtra("num", 10);
         startActivity(intent);
     }
-
-    public void MsTest(View view){
-        Intent MsTestIntent = new Intent(getApplicationContext(), MsTest.class);
-        startActivity(MsTestIntent);
+    public void Select_20(View view) {
+        Intent intent = new Intent(this, Capital_QA.class);
+        intent.putExtra("num", 20);
+        startActivity(intent);
     }
-
-    public void Capital(View view){
-        Intent intent = new Intent(getApplicationContext(), NumberOfQuestion.class);
+    public void Select_30(View view) {
+        Intent intent = new Intent(this, Capital_QA.class);
+        intent.putExtra("num", 30);
+        startActivity(intent);
+    }
+    public void Select_50(View view) {
+        Intent intent = new Intent(this, Capital_QA.class);
+        intent.putExtra("num", 50);
         startActivity(intent);
     }
 }
