@@ -27,6 +27,9 @@
             android:name=".NumberOfQuestion"
             android:exported="false" />
         <activity
+            android:name=".BlockPuzzle"
+            android:exported="false" />
+        <activity
             android:name=".Capital_QA"
             android:exported="false" />
         <activity
