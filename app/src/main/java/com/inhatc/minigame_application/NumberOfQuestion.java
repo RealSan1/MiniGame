@@ -25,22 +25,22 @@ public class NumberOfQuestion extends AppCompatActivity {
     }
 
     public void Select_10(View view) {
-        Intent intent = new Intent(this, Capital_QA.class);
+        Intent intent = new Intent(this, CapitalQA.class);
         intent.putExtra("num", 10);
         startActivity(intent);
     }
     public void Select_20(View view) {
-        Intent intent = new Intent(this, Capital_QA.class);
+        Intent intent = new Intent(this, CapitalQA.class);
         intent.putExtra("num", 20);
         startActivity(intent);
     }
     public void Select_30(View view) {
-        Intent intent = new Intent(this, Capital_QA.class);
+        Intent intent = new Intent(this, CapitalQA.class);
         intent.putExtra("num", 30);
         startActivity(intent);
     }
     public void Select_50(View view) {
-        Intent intent = new Intent(this, Capital_QA.class);
+        Intent intent = new Intent(this, CapitalQA.class);
         intent.putExtra("num", 50);
         startActivity(intent);
     }
