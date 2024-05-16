@@ -28,7 +28,6 @@ public class Capital_QA extends AppCompatActivity {
 
         // 문제 개수 받아오기
         int numOfQ = getIntent().getIntExtra("num",1);
-/*
         skThread = SocketThread.getInstance();
 
         //서버로 부터 받아온 mysql json형식의 데이터
@@ -36,6 +35,7 @@ public class Capital_QA extends AppCompatActivity {
         String data = skThread.getq_a();
         System.out.println(data);
 
+/*
 
         //DB의 인스턴스 가져옴(로컬전용DB) 쓰고싶으면 쓰고 안쓰고 싶으면 안쓰고
         dbHelper = DBHelper.getInstance(getApplicationContext());
