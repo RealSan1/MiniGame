@@ -24,13 +24,16 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".CapitalResult"
+            android:exported="false" />
+        <activity
             android:name=".NumberOfQuestion"
             android:exported="false" />
         <activity
             android:name=".BlockPuzzle"
             android:exported="false" />
         <activity
-            android:name=".Capital_QA"
+            android:name=".CapitalQA"
             android:exported="false" />
         <activity
             android:name=".RankActivity"
