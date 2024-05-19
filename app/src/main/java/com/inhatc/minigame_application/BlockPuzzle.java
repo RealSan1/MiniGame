@@ -26,6 +26,7 @@ public class BlockPuzzle extends AppCompatActivity implements View.OnClickListen
     ImageView BImg1, BImg2, BImg3, BImg4, BImg5;
     int ColorR, ColorG, ColorB, randomColor, score;
     ArrayList<Integer> list = new ArrayList<>();
+    private static final long START_TIME_IN_MILLIS = 15000;
     Random random = new Random();
     Boolean isClicked = false;
     TextView scoreText, timerTV;
@@ -71,6 +72,7 @@ public class BlockPuzzle extends AppCompatActivity implements View.OnClickListen
         Rbtn.setOnClickListener(this);
         Gbtn.setOnClickListener(this);
         Bbtn.setOnClickListener(this);
+        setTimer();
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -103,7 +105,7 @@ public class BlockPuzzle extends AppCompatActivity implements View.OnClickListen
     }
 
     public void setTimer(){
-        new CountDownTimer(30000, 1000) {
+        new CountDownTimer(START_TIME_IN_MILLIS, 1000) {
 
             @Override
             public void onTick(long millisUntilFinished) {
@@ -114,6 +116,9 @@ public class BlockPuzzle extends AppCompatActivity implements View.OnClickListen
                 }
                 if(secondsRemaining == 0){
                     onFinish();
+                    Rbtn.setEnabled(false);
+                    Gbtn.setEnabled(false);
+                    Bbtn.setEnabled(false);
                 }
             }
             @Override
