@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -25,9 +26,10 @@ public class BlockPuzzle extends AppCompatActivity implements View.OnClickListen
     ImageView BImg1, BImg2, BImg3, BImg4, BImg5;
     int ColorR, ColorG, ColorB, randomColor, score;
     ArrayList<Integer> list = new ArrayList<>();
+    private static final long START_TIME_IN_MILLIS = 15000;
     Random random = new Random();
     Boolean isClicked = false;
-    TextView scoreText;
+    TextView scoreText, timerTV;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +46,7 @@ public class BlockPuzzle extends AppCompatActivity implements View.OnClickListen
         BImg3 = findViewById(R.id.BlockImg3);
         BImg4 = findViewById(R.id.BlockImg4);
         BImg5 = findViewById(R.id.BlockImg5);
+        timerTV = (TextView)findViewById(R.id.txtTimer);
 
         ColorR = R.drawable.red;
         ColorG = R.drawable.blue;
@@ -69,6 +72,7 @@ public class BlockPuzzle extends AppCompatActivity implements View.OnClickListen
         Rbtn.setOnClickListener(this);
         Gbtn.setOnClickListener(this);
         Bbtn.setOnClickListener(this);
+        setTimer();
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -98,5 +102,29 @@ public class BlockPuzzle extends AppCompatActivity implements View.OnClickListen
         isClicked = true;
         scoreText.setText(String.valueOf(score * 10));
 
+    }
+
+    public void setTimer(){
+        new CountDownTimer(START_TIME_IN_MILLIS, 1000) {
+
+            @Override
+            public void onTick(long millisUntilFinished) {
+                int secondsRemaining = (int) (millisUntilFinished / 1000);
+                timerTV.setText(String.valueOf(secondsRemaining));
+                if (secondsRemaining < 6) {
+                    timerTV.setTextColor(Color.RED);
+                }
+                if(secondsRemaining == 0){
+                    onFinish();
+                    Rbtn.setEnabled(false);
+                    Gbtn.setEnabled(false);
+                    Bbtn.setEnabled(false);
+                }
+            }
+            @Override
+            public void onFinish() {
+                timerTV.setText("종료");
+            }
+        }.start();
     }
 }
