@@ -113,15 +113,15 @@
 
     <android.widget.Button
         android:id="@+id/btnNext"
-        android:layout_width="50dp"
+        android:layout_width="87dp"
         android:layout_height="50dp"
         android:layout_marginBottom="112dp"
         android:background="@drawable/buttonshape"
         android:fontFamily="sans-serif-medium"
         android:onClick="Next"
-        android:text=">"
+        android:text="다음"
         android:textColor="#FFFFFF"
-        android:textSize="34sp"
+        android:textSize="24sp"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
