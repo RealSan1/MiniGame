@@ -1,14 +1,18 @@
 package com.inhatc.minigame_application;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -31,18 +35,23 @@ public class CapitalQA extends AppCompatActivity {
     private TextView question, answer, result, timerTV;
     private EditText edtAnswer;
     private Button btnNext, btnCommit;
-    private static final long START_TIME_IN_MILLIS = 30000;
+    private ImageView imgFlag;
+    private List<Map<String, String>> findFlag;
+    private static final long START_TIME_IN_MILLIS = 15000;
     private SocketThread skThread;
-    int numOfQ = getIntent().getIntExtra("num",1); // 문제 개수 가져오기
     private int count = 0; // 문제 진행률 카운터
     private int correct = 0; // 문제 정답률 카운터
     private List<Map.Entry<String, String>> randomDataList;
+    private CountDownTimer countDownTimer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_capital_qa);
+
+        // 문제 개수 가져오기
+        int numOfQ = getIntent().getIntExtra("num",1);
 
         skThread = SocketThread.getInstance();
 
@@ -65,6 +74,7 @@ public class CapitalQA extends AppCompatActivity {
         edtAnswer = (EditText)findViewById(R.id.editTextAnswer);
         btnCommit = (Button)findViewById(R.id.btnCommit);
         btnNext = (Button)findViewById(R.id.btnNext);
+        imgFlag = (ImageView)findViewById(R.id.imgFlag);
 
         // 타이머 설정
         setTimer();
@@ -72,11 +82,15 @@ public class CapitalQA extends AppCompatActivity {
         //문제 설정
         setQuestion(count);
 
+        // 모바일 키보드 제출 버튼 또는 키보드 엔터키 눌렀을 때 Commit 메소드 실행
         edtAnswer.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
                     Commit(btnCommit);
+                    // 키보드 숨기기
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(edtAnswer.getWindowToken(), 0);
                     return true;
                 }
                 return false;
@@ -93,15 +107,19 @@ public class CapitalQA extends AppCompatActivity {
     // DB에서 가져온 데이터 파싱
     protected Map<String, String> ParseData(String json) {
         Map<String, String> countryCapitalMap = new HashMap<>();
-
+        findFlag = new ArrayList<>();
+        Map<String, String> engCountryMap = new HashMap<>();
         try {
             JSONArray jsonArray = new JSONArray(json);
-
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                 String country = jsonObject.getString("country");
                 String capital = jsonObject.getString("capital");
                 countryCapitalMap.put(country, capital);
+
+                String countryEng = jsonObject.getString("country_eng");
+                engCountryMap.put(country, countryEng);
+                findFlag.add(engCountryMap);
             }
 
         } catch (JSONException e) {
@@ -125,20 +143,10 @@ public class CapitalQA extends AppCompatActivity {
         return randomEntriesMap;
     }
 
-    // 가져온 DB 데이터에서 i번째 데이터 추출
-    protected Map.Entry<String, String> getIEntry(Map<String, String> map, int i) {
-        List<Map.Entry<String, String>> entryList = new ArrayList<>(map.entrySet());
-        if (i >= 0 && i < entryList.size()) {
-            return entryList.get(i); // i번째 항목 반환
-        } else {
-            return null; // 맵에 i번째 항목이 없을 경우 null 반환
-        }
-    }
-
     // 타이머 설정
     public void setTimer(){
-        new CountDownTimer(START_TIME_IN_MILLIS, 1000) {
-
+        timerTV.setTextColor(Color.WHITE);
+        countDownTimer = new CountDownTimer(START_TIME_IN_MILLIS, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
                 int secondsRemaining = (int) (millisUntilFinished / 1000);
@@ -153,17 +161,40 @@ public class CapitalQA extends AppCompatActivity {
             @Override
             public void onFinish() {
                 timerTV.setText("종료");
+                Commit(null);
             }
         }.start();
     }
+    private void resetTimer() {
+        if (countDownTimer != null) {
+            countDownTimer.cancel();
+        }
+        setTimer();
+    }
 
+    // 문제 생성
     private void setQuestion(int index) {
         Map.Entry<String, String> entry = randomDataList.get(index);
         question.setText(entry.getKey());
         answer.setText(entry.getValue());
+
+        String countryEng = "";
+        for(int i = 0; i < findFlag.size(); i++) {
+            Map<String, String> engMap = findFlag.get(i);
+            countryEng = engMap.get(entry.getKey()).toLowerCase();
+        }
+        System.out.println(countryEng);
+        int resId = getResources().getIdentifier(countryEng, "drawable", getPackageName());
+        System.out.println(resId);
+        BitmapDrawable img = (BitmapDrawable) getResources().getDrawable(resId);
+        imgFlag.setImageDrawable(img);
     }
 
     public void Commit(View view){
+        if(countDownTimer != null){
+            countDownTimer.cancel();
+        }
+
         String userAnswer = edtAnswer.getText().toString().trim();
         String correctAnswer = randomDataList.get(count).getValue();
 
@@ -185,6 +216,7 @@ public class CapitalQA extends AppCompatActivity {
         count++;
         if (count < randomDataList.size()) {
             setQuestion(count);
+            resetTimer();
             result.setVisibility(View.INVISIBLE);
             edtAnswer.setVisibility(View.VISIBLE);
             edtAnswer.setText("");
@@ -195,7 +227,7 @@ public class CapitalQA extends AppCompatActivity {
             // 모든 문제를 다 푼 경우 결과 페이지로 이동
             Intent intent = new Intent(CapitalQA.this, CapitalResult.class);
             intent.putExtra("correct", correct);
-            intent.putExtra("total", numOfQ);
+            intent.putExtra("total", randomDataList.size());
             startActivity(intent);
             finish();
         }
