@@ -31,10 +31,12 @@
         android:layout_height="80dp"
         android:layout_marginBottom="120dp"
         android:background="@drawable/roundbutton"
+        android:elevation="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/BlockBtnB"
         app:layout_constraintHorizontal_bias="0.739"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:visibility="invisible" />
 
     <Button
         android:id="@+id/BlockBtnR"
@@ -43,10 +45,13 @@
         android:layout_marginStart="30dp"
         android:layout_marginBottom="120dp"
         android:background="@drawable/roundbutton"
+        android:elevation="20dp"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/BlockBtnG"
         app:layout_constraintHorizontal_bias="0.036"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:visibility="invisible" />
 
     <Button
         android:id="@+id/BlockBtnB"
@@ -55,8 +60,10 @@
         android:layout_marginEnd="28dp"
         android:layout_marginBottom="120dp"
         android:background="@drawable/roundbutton"
+        android:elevation="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:visibility="invisible" />
 
     <TextView
         android:id="@+id/BlockScoreText"
@@ -65,7 +72,7 @@
         android:layout_marginTop="72dp"
         android:text="Score"
         android:textAlignment="center"
-        android:textSize="24sp"
+        android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -73,12 +80,14 @@
     <FrameLayout
         android:id="@+id/BlockBackground"
         android:layout_width="0dp"
-        android:layout_height="290dp"
+        android:layout_height="291dp"
         android:layout_marginTop="45dp"
-        android:background="#F3E6E6"
+        android:background="#F8F3F3"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/BlockScoreText">
+        app:layout_constraintTop_toBottomOf="@+id/BlockScoreText"
+        tools:visibility="visible">
 
         <ImageView
             android:id="@+id/BlockImg3"
@@ -127,6 +136,53 @@
             android:layout_gravity="center"
             app:srcCompat="@drawable/frame"
             tools:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/combo"
+            android:layout_width="124dp"
+            android:layout_height="71dp"
+            android:layout_gravity="center|top"
+            android:visibility="invisible"
+            app:srcCompat="@drawable/combo"
+            tools:visibility="visible" />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/popup"
+        android:layout_width="310dp"
+        android:layout_height="459dp"
+        android:background="#CC8E8E"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible">
+
+        <TextView
+            android:id="@+id/popUpBlockText"
+            android:layout_width="match_parent"
+            android:layout_height="302dp"
+            android:layout_gravity="center|top"
+            android:layout_marginTop="50dp"
+            android:text="15초 동안 네모 프레임의 색과 일치하는 버튼을 누르는 게임입니다. 연속적으로 블럭을 맞춘다면 추가점수가 있습니다."
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="34sp"
+            tools:visibility="visible" />
+
+        <Button
+            android:id="@+id/startBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
+            android:layout_marginBottom="50dp"
+            android:background="@drawable/buttonshape"
+            android:onClick="start"
+            android:text="시작"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
     </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
