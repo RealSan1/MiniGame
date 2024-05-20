@@ -1,9 +1,12 @@
 package com.inhatc.minigame_application;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -75,6 +78,16 @@ public class CapitalResult extends AppCompatActivity {
             }
         });
         myDialog.show();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                inputName.requestFocus();
+                InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                if (inputMethodManager != null) {
+                    inputMethodManager.showSoftInput(inputName, InputMethodManager.SHOW_IMPLICIT);
+                }
+            }
+        }, 300);
     }
     public void Cancel(View v){
         finish();
