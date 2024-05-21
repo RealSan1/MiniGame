@@ -1,12 +1,15 @@
 package com.inhatc.minigame_application;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
@@ -183,6 +186,16 @@ public class BlockPuzzle extends AppCompatActivity implements View.OnClickListen
                     });
 
                     myDialog.show();
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            inputName.requestFocus();
+                            InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                            if (inputMethodManager != null) {
+                                inputMethodManager.showSoftInput(inputName, InputMethodManager.SHOW_IMPLICIT);
+                            }
+                        }
+                    }, 300);
                 }
             }
             @Override

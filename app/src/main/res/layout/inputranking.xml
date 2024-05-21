@@ -20,25 +20,48 @@
         android:textSize="30dp"
         android:textStyle="bold" />
 
-    <Button
+    <android.widget.Button
         android:id="@+id/inputRankingI"
-        android:layout_width="wrap_content"
+        android:layout_width="90sp"
         android:layout_height="wrap_content"
         android:layout_gravity="center|end"
         android:layout_marginTop="300dp"
         android:layout_marginEnd="50dp"
+        android:background="@drawable/buttonshape2"
+        android:fontFamily="sans-serif-medium"
         android:onClick="RankingInput"
-        android:text="등록" />
+        android:text="등록"
+        android:textStyle="bold"
+        android:textColor="#D8403E3E"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.146"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtCapScore"
+        app:layout_constraintVertical_bias="0.0" />
 
-    <Button
+    <android.widget.Button
         android:id="@+id/inputRankingC"
-        android:layout_width="wrap_content"
+        android:layout_width="90sp"
         android:layout_height="wrap_content"
         android:layout_gravity="center|start"
         android:layout_marginStart="50dp"
         android:layout_marginTop="300dp"
+        android:background="@drawable/buttonshape2"
+        android:fontFamily="sans-serif-medium"
         android:onClick="Cancel"
-        android:text="취소" />
+        android:text="취소"
+        android:textStyle="bold"
+        android:textColor="#D8403E3E"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.146"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtCapScore"
+        app:layout_constraintVertical_bias="0.0" />
+
 
     <ImageView
         android:id="@+id/inputRankingImg"
@@ -49,15 +72,14 @@
 
     <EditText
         android:id="@+id/inputName"
-        android:layout_width="wrap_content"
+        android:layout_width="208dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="220dp"
         android:layout_marginBottom="150dp"
         android:ems="10"
+        android:hint="이름 입력"
         android:inputType="text"
-        android:hint="Name"
-        android:textAlignment="center"
         android:textSize="30dp"
         android:textStyle="bold" />
 
