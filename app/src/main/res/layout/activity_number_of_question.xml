@@ -9,23 +9,23 @@
     tools:context=".NumberOfQuestion">
 
     <android.widget.Button
-        android:id="@+id/btnSelect10"
+        android:id="@+id/btnSelect50"
 
         android:layout_width="0dp"
         android:layout_height="48dp"
         android:layout_marginStart="115dp"
 
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="44dp"
         android:layout_marginEnd="115dp"
         android:background="@drawable/buttonshape"
-        android:onClick="Select_10"
-        android:text="10개 맞추기"
+        android:onClick="Select_50"
+        android:text="50개 맞추기"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/btnSelect30" />
 
     <android.widget.Button
         android:id="@+id/btnSelect20"
@@ -34,7 +34,7 @@
         android:layout_height="48dp"
         android:layout_marginStart="115dp"
 
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="44dp"
         android:layout_marginEnd="115dp"
         android:background="@drawable/buttonshape"
         android:onClick="Select_20"
@@ -47,13 +47,32 @@
         app:layout_constraintTop_toBottomOf="@+id/btnSelect10" />
 
     <android.widget.Button
+        android:id="@+id/btnSelect10"
+
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="115dp"
+
+        android:layout_marginTop="108dp"
+        android:layout_marginEnd="115dp"
+        android:background="@drawable/buttonshape"
+        android:onClick="Select_10"
+        android:text="10개 맞추기"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <android.widget.Button
         android:id="@+id/btnSelect30"
 
         android:layout_width="0dp"
         android:layout_height="48dp"
         android:layout_marginStart="115dp"
 
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="36dp"
         android:layout_marginEnd="115dp"
         android:background="@drawable/buttonshape"
         android:onClick="Select_30"
@@ -61,27 +80,21 @@
         android:textColor="#FFFFFF"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnSelect20" />
 
-    <android.widget.Button
-        android:id="@+id/btnSelect50"
-
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="115dp"
-
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="115dp"
-        android:background="@drawable/buttonshape"
-        android:onClick="Select_50"
-        android:text="50개 맞추기"
-        android:textColor="#FFFFFF"
-        android:textSize="16sp"
+    <TextView
+        android:id="@+id/txtGameType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:text="게임 이름"
+        android:textColor="@color/white"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnSelect30" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

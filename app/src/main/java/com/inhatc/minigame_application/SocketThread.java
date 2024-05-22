@@ -163,7 +163,7 @@ public class SocketThread extends Thread{
         try{
             q_aMethod = true;
             System.out.println("문제와 답 가져오기 메서드 진입 성공");
-            outData = "4"+","+"get_q_a";
+            outData = "5"+","+"get_q_a";
             ckMethod = 1;
             trigger = true;
             System.out.println("ThAccess="+ThAccess+"  ckMethod="+ckMethod);

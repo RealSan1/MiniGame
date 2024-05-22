@@ -37,7 +37,7 @@ public class CapitalResult extends AppCompatActivity {
         TextView result = findViewById(R.id.txtCapResult);
         TextView scorePer = findViewById(R.id.txtCapScore);
 
-        result.setText(correct + "개 맞히셨습니다.");
+        result.setText(correct + "개 정답!");
         scorePer.setText(score + "%"); // 점수 뒤에 % 추가
 
         myDialog = new Dialog(this);
