@@ -8,73 +8,473 @@
     android:background="#4193FC"
     tools:context=".SelectGameActivity">
 
-    <android.widget.Button
-        android:id="@+id/btnSimilarColors"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="115dp"
-        android:layout_marginTop="80dp"
-        android:layout_marginEnd="115dp"
-        android:background="@drawable/buttonshape"
-        android:onClick="Find_Color"
-        android:text="색깔 맞추기"
-        android:textColor="#FFFFFF"
-        android:textSize="16sp"
+    <FrameLayout
+        android:id="@+id/GameList"
+        android:layout_width="374dp"
+        android:layout_height="814dp"
+        android:layout_margin="25dp"
+        android:background="@drawable/white_buttonshape"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <android.widget.Button
-        android:id="@+id/btnMsTest"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="115dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="115dp"
-        android:background="@drawable/buttonshape"
-        android:onClick="MsTest"
-        android:text="반응속도 테스트"
-        android:textColor="#FFFFFF"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnSimilarColors" />
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="46dp"
+            android:background="@drawable/layout"
+            android:padding="9dp"
+            android:text="게임 리스트"
+            android:textAlignment="textStart"
+            android:textColor="#FFFFFF"
+            android:textSize="23dp"
+            android:textStyle="bold" />
 
-    <android.widget.Button
-        android:id="@+id/btnCapital"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="115dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="115dp"
-        android:background="@drawable/buttonshape"
-        android:onClick="Capital"
-        android:text="수도 맞히기"
-        android:textColor="#FFFFFF"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnMsTest" />
+        <ScrollView
+            android:id="@+id/scroll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="45dp">
 
-    <android.widget.Button
-        android:id="@+id/btnBlock"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="115dp"
-        android:layout_marginTop="124dp"
-        android:layout_marginEnd="115dp"
-        android:background="@drawable/buttonshape"
-        android:onClick="BlockPuzzle"
-        android:text="블럭 맞추기"
-        android:textColor="#FFFFFF"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnMsTest" />
+            <LinearLayout
+                android:id="@+id/scroll_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <FrameLayout
+                    android:id="@+id/PickColorGame"
+                    android:layout_width="330dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="23dp"
+                    android:layout_marginTop="14dp"
+                    android:layout_marginBottom="14dp"
+                    android:background="@drawable/buttonshape2"
+                    android:onClick="Find_Color">
+
+                    <ImageView
+                        android:id="@+id/PickColorGame_img"
+                        android:layout_width="40dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="start"
+                        android:layout_marginStart="15dp"
+                        app:srcCompat="@drawable/picker" />
+
+                    <TextView
+                        android:id="@+id/PickColorGame_text"
+                        android:layout_width="185dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center|top"
+                        android:layout_marginTop="3dp"
+                        android:text="색깔 맞추기"
+                        android:textColor="#000000"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/PickColorGame_text2"
+                        android:layout_width="189dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom|center"
+                        android:layout_marginBottom="3dp"
+                        android:text="신체능력 테스트" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/MsTestGame"
+                    android:layout_width="330dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="23dp"
+                    android:layout_marginTop="14dp"
+                    android:layout_marginBottom="14dp"
+                    android:background="@drawable/buttonshape2"
+                    android:onClick="MsTest">
+
+                    <ImageView
+                        android:id="@+id/MsTestGame_img"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="start"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="5dp"
+                        app:srcCompat="@drawable/lightning" />
+
+                    <TextView
+                        android:id="@+id/MsTestGame_text"
+                        android:layout_width="185dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center|top"
+                        android:layout_marginTop="3dp"
+                        android:text="반응속도"
+                        android:textColor="#000000"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/MsTestGame_text2"
+                        android:layout_width="189dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom|center"
+                        android:layout_marginBottom="3dp"
+                        android:text="신체능력 테스트" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/BlockGame"
+                    android:layout_width="330dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="23dp"
+                    android:layout_marginTop="14dp"
+                    android:layout_marginBottom="14dp"
+                    android:background="@drawable/buttonshape2"
+                    android:onClick="BlockPuzzle">
+
+                    <ImageView
+                        android:id="@+id/BlockGame_img"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="start"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="4dp"
+                        app:srcCompat="@drawable/block" />
+
+                    <TextView
+                        android:id="@+id/BlockGame_text"
+                        android:layout_width="185dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center|top"
+                        android:layout_marginTop="3dp"
+                        android:text="블럭 맞추기"
+                        android:textColor="#000000"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/BlockGame_text2"
+                        android:layout_width="189dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom|center"
+                        android:layout_marginBottom="3dp"
+                        android:text="신체능력 테스트" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/capitalGame_1"
+                    android:layout_width="330dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="23dp"
+                    android:layout_marginTop="14dp"
+                    android:layout_marginBottom="14dp"
+                    android:background="@drawable/buttonshape2"
+                    android:onClick="Capital">
+
+                    <ImageView
+                        android:id="@+id/capital_img_1"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="start"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="4dp"
+                        app:srcCompat="@drawable/capital" />
+
+                    <TextView
+                        android:id="@+id/capital_text_1"
+                        android:layout_width="185dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center|top"
+                        android:layout_marginTop="3dp"
+                        android:text="수도 맞추기"
+                        android:textColor="#000000"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/capital_text2_1"
+                        android:layout_width="189dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom|center"
+                        android:layout_marginBottom="3dp"
+                        android:text="지능 테스트" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/capitalGame_2"
+                    android:layout_width="330dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="23dp"
+                    android:layout_marginTop="14dp"
+                    android:layout_marginBottom="14dp"
+                    android:background="@drawable/buttonshape2"
+                    android:onClick="Capital">
+
+                    <ImageView
+                        android:id="@+id/capital_img_2"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="start"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="4dp"
+                        app:srcCompat="@drawable/capital" />
+
+                    <TextView
+                        android:id="@+id/capital_text_2"
+                        android:layout_width="185dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center|top"
+                        android:layout_marginTop="3dp"
+                        android:text="수도 맞추기"
+                        android:textColor="#000000"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/capital_text2_2"
+                        android:layout_width="189dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom|center"
+                        android:layout_marginBottom="3dp"
+                        android:text="지능 테스트" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/capitalGame_3"
+                    android:layout_width="330dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="23dp"
+                    android:layout_marginTop="14dp"
+                    android:layout_marginBottom="14dp"
+                    android:background="@drawable/buttonshape2"
+                    android:onClick="Capital">
+
+                    <ImageView
+                        android:id="@+id/capital_img_3"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="start"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="4dp"
+                        app:srcCompat="@drawable/capital" />
+
+                    <TextView
+                        android:id="@+id/capital_text_3"
+                        android:layout_width="185dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center|top"
+                        android:layout_marginTop="3dp"
+                        android:text="수도 맞추기"
+                        android:textColor="#000000"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/capital_text2_3"
+                        android:layout_width="189dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom|center"
+                        android:layout_marginBottom="3dp"
+                        android:text="지능 테스트" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/capitalGame_4"
+                    android:layout_width="330dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="23dp"
+                    android:layout_marginTop="14dp"
+                    android:layout_marginBottom="14dp"
+                    android:background="@drawable/buttonshape2"
+                    android:onClick="Capital">
+
+                    <ImageView
+                        android:id="@+id/capital_img_4"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="start"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="4dp"
+                        app:srcCompat="@drawable/capital" />
+
+                    <TextView
+                        android:id="@+id/capital_text_4"
+                        android:layout_width="185dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center|top"
+                        android:layout_marginTop="3dp"
+                        android:text="수도 맞추기"
+                        android:textColor="#000000"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/capital_text2_4"
+                        android:layout_width="189dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom|center"
+                        android:layout_marginBottom="3dp"
+                        android:text="지능 테스트" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/capitalGame_5"
+                    android:layout_width="330dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="23dp"
+                    android:layout_marginTop="14dp"
+                    android:layout_marginBottom="14dp"
+                    android:background="@drawable/buttonshape2"
+                    android:onClick="Capital">
+
+                    <ImageView
+                        android:id="@+id/capital_img_5"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="start"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="4dp"
+                        app:srcCompat="@drawable/capital" />
+
+                    <TextView
+                        android:id="@+id/capital_text_5"
+                        android:layout_width="185dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center|top"
+                        android:layout_marginTop="3dp"
+                        android:text="수도 맞추기"
+                        android:textColor="#000000"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/capital_text2_5"
+                        android:layout_width="189dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom|center"
+                        android:layout_marginBottom="3dp"
+                        android:text="지능 테스트" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/capitalGame_6"
+                    android:layout_width="330dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="23dp"
+                    android:layout_marginTop="14dp"
+                    android:layout_marginBottom="14dp"
+                    android:background="@drawable/buttonshape2"
+                    android:onClick="Capital">
+
+                    <ImageView
+                        android:id="@+id/capital_img_6"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="start"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="4dp"
+                        app:srcCompat="@drawable/capital" />
+
+                    <TextView
+                        android:id="@+id/capital_text_6"
+                        android:layout_width="185dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center|top"
+                        android:layout_marginTop="3dp"
+                        android:text="수도 맞추기"
+                        android:textColor="#000000"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/capital_text2_6"
+                        android:layout_width="189dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom|center"
+                        android:layout_marginBottom="3dp"
+                        android:text="지능 테스트" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/capitalGame_7"
+                    android:layout_width="330dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="23dp"
+                    android:layout_marginTop="14dp"
+                    android:layout_marginBottom="14dp"
+                    android:background="@drawable/buttonshape2"
+                    android:onClick="Capital">
+
+                    <ImageView
+                        android:id="@+id/capital_img_7"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="start"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="4dp"
+                        app:srcCompat="@drawable/capital" />
+
+                    <TextView
+                        android:id="@+id/capital_text_7"
+                        android:layout_width="185dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center|top"
+                        android:layout_marginTop="3dp"
+                        android:text="수도 맞추기"
+                        android:textColor="#000000"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/capital_text2_7"
+                        android:layout_width="189dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom|center"
+                        android:layout_marginBottom="3dp"
+                        android:text="지능 테스트" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/capitalGame"
+                    android:layout_width="330dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="23dp"
+                    android:layout_marginTop="14dp"
+                    android:layout_marginBottom="14dp"
+                    android:background="@drawable/buttonshape2"
+                    android:onClick="Capital">
+
+                    <ImageView
+                        android:id="@+id/capital_img"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="start"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="4dp"
+                        app:srcCompat="@drawable/capital" />
+
+                    <TextView
+                        android:id="@+id/capital_text"
+                        android:layout_width="185dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center|top"
+                        android:layout_marginTop="3dp"
+                        android:text="수도 맞추기"
+                        android:textColor="#000000"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/capital_text2"
+                        android:layout_width="189dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom|center"
+                        android:layout_marginBottom="3dp"
+                        android:text="지능 테스트" />
+                </FrameLayout>
+
+            </LinearLayout>
+        </ScrollView>
+
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

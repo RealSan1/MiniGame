@@ -5,6 +5,10 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,6 +18,8 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
     private SocketThread skThread;
+    Animation anim;
+    TextView Text;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +29,9 @@ public class MainActivity extends AppCompatActivity {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
 
         StrictMode.setThreadPolicy(policy);
+        Text = findViewById(R.id.txtTouchScreen);
+        anim = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.blink);
+        Text.startAnimation(anim);
 
         //소켓 스레드 생성 후 시작(앱 시작 시 서버와 접속)
         skThread = SocketThread.getInstance();
@@ -35,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+
     @Override
     protected void onDestroy() {//앱이 종료시 소켓스레드도 종료
         super.onDestroy();
@@ -46,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void MainClick(View view) {
         Intent intent = new Intent(getApplicationContext(), MainSelectActivity.class);
+        Text.clearAnimation();
         startActivity(intent);
     }
 
