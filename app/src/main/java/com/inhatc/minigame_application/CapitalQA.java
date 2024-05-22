@@ -201,6 +201,8 @@ public class CapitalQA extends AppCompatActivity {
         if (userAnswer.equalsIgnoreCase(correctAnswer)) {
             result.setText("정답!");
             correct++;
+        } else if ("종료".equals(timerTV.getText())) {
+            result.setText("타임 오버!");
         } else {
             result.setText("오답!");
         }
