@@ -173,7 +173,7 @@ public class BlockPuzzle extends AppCompatActivity implements View.OnClickListen
                         public void onClick(View v) {
                             String playerName = inputName.getText().toString();
                             //점수 DB전송
-                            int result = skThread.sendDataToServer(playerName, score, gameName.getText().toString());
+                            int result = skThread.sendDataToServer(playerName, score*10, gameName.getText().toString());
                             //result=1 입력 성공, 2 닉네임 중복
                             if(result == 1){
                                 Log.d("result", "입력 성공");
