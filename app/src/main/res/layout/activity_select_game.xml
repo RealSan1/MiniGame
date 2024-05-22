@@ -160,18 +160,20 @@
                 </FrameLayout>
 
                 <FrameLayout
-                    android:id="@+id/capitalGame_1"
+                    android:id="@+id/capitalGame"
                     android:layout_width="330dp"
-                    android:layout_height="50dp"
+                    android:layout_height="match_parent"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="23dp"
                     android:layout_marginTop="14dp"
                     android:layout_marginBottom="14dp"
                     android:background="@drawable/buttonshape2"
-                    android:onClick="Capital">
+                    android:onClick="Capital"
+                    tools:layout_editor_absoluteX="-161dp"
+                    tools:layout_editor_absoluteY="202dp">
 
                     <ImageView
-                        android:id="@+id/capital_img_1"
+                        android:id="@+id/capital_img"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_gravity="start"
@@ -180,7 +182,7 @@
                         app:srcCompat="@drawable/capital" />
 
                     <TextView
-                        android:id="@+id/capital_text_1"
+                        android:id="@+id/capital_text"
                         android:layout_width="185dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center|top"
@@ -190,7 +192,7 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/capital_text2_1"
+                        android:id="@+id/capital_text2"
                         android:layout_width="189dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom|center"
@@ -199,7 +201,7 @@
                 </FrameLayout>
 
                 <FrameLayout
-                    android:id="@+id/capitalGame_2"
+                    android:id="@+id/personGame"
                     android:layout_width="330dp"
                     android:layout_height="match_parent"
                     android:layout_gravity="center_vertical"
@@ -207,29 +209,29 @@
                     android:layout_marginTop="14dp"
                     android:layout_marginBottom="14dp"
                     android:background="@drawable/buttonshape2"
-                    android:onClick="Capital">
+                    android:onClick="Person">
 
                     <ImageView
-                        android:id="@+id/capital_img_2"
+                        android:id="@+id/person_img"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_gravity="start"
                         android:layout_marginStart="15dp"
                         android:layout_marginTop="4dp"
-                        app:srcCompat="@drawable/capital" />
+                        app:srcCompat="@drawable/person" />
 
                     <TextView
-                        android:id="@+id/capital_text_2"
+                        android:id="@+id/person_text"
                         android:layout_width="185dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center|top"
                         android:layout_marginTop="3dp"
-                        android:text="수도 맞추기"
+                        android:text="인물 맞추기"
                         android:textColor="#000000"
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/capital_text2_2"
+                        android:id="@+id/person_text2"
                         android:layout_width="189dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom|center"
@@ -433,9 +435,9 @@
                 </FrameLayout>
 
                 <FrameLayout
-                    android:id="@+id/capitalGame"
+                    android:id="@+id/capitalGame_1"
                     android:layout_width="330dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="23dp"
                     android:layout_marginTop="14dp"
@@ -444,7 +446,7 @@
                     android:onClick="Capital">
 
                     <ImageView
-                        android:id="@+id/capital_img"
+                        android:id="@+id/capital_img_1"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_gravity="start"
@@ -453,7 +455,7 @@
                         app:srcCompat="@drawable/capital" />
 
                     <TextView
-                        android:id="@+id/capital_text"
+                        android:id="@+id/capital_text_1"
                         android:layout_width="185dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center|top"
@@ -463,7 +465,7 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/capital_text2"
+                        android:id="@+id/capital_text2_1"
                         android:layout_width="189dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom|center"
@@ -475,23 +477,6 @@
         </ScrollView>
 
     </FrameLayout>
-
-    <android.widget.Button
-        android:id="@+id/btnPerson"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="115dp"
-        android:layout_marginTop="124dp"
-        android:layout_marginEnd="115dp"
-        android:background="@drawable/buttonshape"
-        android:onClick="Person"
-        android:text="인물 맞히기"
-        android:textColor="#FFFFFF"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnCapital" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
