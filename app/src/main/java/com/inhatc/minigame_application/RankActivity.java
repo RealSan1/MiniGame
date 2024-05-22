@@ -1,6 +1,7 @@
 package com.inhatc.minigame_application;
 
 import android.os.Bundle;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,14 +18,24 @@ import org.json.JSONObject;
 public class RankActivity extends AppCompatActivity {
 
     private SocketThread skThread;
+    private static String GameName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_rank);
 
+        TextView toolbarTitle = findViewById(R.id.toolbarTitle);
+        String strBarTitle = (String) toolbarTitle.getText();
+
         skThread = SocketThread.getInstance();
-        String[] jsonData = ParseData(skThread.SelectRankList());
+
+        String[] jsonData = ParseData(skThread.SelectRankList(GameName));
+        System.out.println("GameName 값 : "+GameName);
+
+        String[] apptitle = GameName.split(" ");
+
+        toolbarTitle.setText(apptitle[0]+" "+apptitle[1]);
 
         /*
         for(int i = 0; i<jsonData.length; i+=4){
@@ -75,5 +86,9 @@ public class RankActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public static void receiveGamename(String gameName){
+        GameName = gameName;
     }
 }
