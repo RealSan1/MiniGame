@@ -29,6 +29,14 @@
             android:resource="@xml/layout" />
 
         <activity
+            android:name=".PersonResult"
+            android:exported="false" />
+        <activity
+            android:name=".PersonQA"
+            android:exported="false"
+            android:label="@string/title_activity_person_qa"
+            android:theme="@style/Theme.MiniGame_Application" />
+        <activity
             android:name=".RankSelect"
             android:exported="false" />
         <activity

@@ -31,32 +31,30 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class CapitalQA extends AppCompatActivity {
+public class PersonQA extends AppCompatActivity {
     private TextView question, answer, result, timerTV;
     private EditText edtAnswer;
     private Button btnNext, btnCommit;
-    private ImageView imgFlag;
-    private List<Map<String, String>> findFlag;
+    private ImageView imgPerson;
     private static final long START_TIME_IN_MILLIS = 15000;
     private SocketThread skThread;
     private int count = 0; // 문제 진행률 카운터
     private int correct = 0; // 문제 정답률 카운터
     private List<Map.Entry<String, String>> randomDataList;
     private CountDownTimer countDownTimer;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_capital_qa);
+        setContentView(R.layout.activity_person_qa);
 
         // 문제 개수 가져오기
-        int numOfQ = getIntent().getIntExtra("num",1);
+        int numOfQ = getIntent().getIntExtra("num",10);
 
         skThread = SocketThread.getInstance();
 
         //서버로 부터 받아온 mysql json형식의 데이터
-        String data = skThread.getq_a();
+        String data = skThread.getPersonQA();
         System.out.println(data);
 
         // DB에서 가져온 데이터 파싱해 Map 형태로 받아옴
@@ -74,13 +72,13 @@ public class CapitalQA extends AppCompatActivity {
         edtAnswer = (EditText)findViewById(R.id.editTextAnswer);
         btnCommit = (Button)findViewById(R.id.btnCommit);
         btnNext = (Button)findViewById(R.id.btnNext);
-        imgFlag = (ImageView)findViewById(R.id.imgFlag);
+        imgPerson = (ImageView)findViewById(R.id.imgPerson);
 
         // 타이머 설정
         setTimer();
 
         //문제 설정
-        setQuestion(count);
+        //setQuestion(count);
 
         // 모바일 키보드 제출 버튼 또는 키보드 엔터키 눌렀을 때 Commit 메소드 실행
         edtAnswer.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -106,29 +104,22 @@ public class CapitalQA extends AppCompatActivity {
 
     // DB에서 가져온 데이터 파싱
     protected Map<String, String> ParseData(String json) {
-        Map<String, String> countryCapitalMap = new HashMap<>();
-        findFlag = new ArrayList<>();
-        Map<String, String> engCountryMap = new HashMap<>();
+        Map<String, String> personMap = new HashMap<>();
         try {
             JSONArray jsonArray = new JSONArray(json);
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
-                String country = jsonObject.getString("country");
-                String capital = jsonObject.getString("capital");
-                countryCapitalMap.put(country, capital);
-
-                String countryEng = jsonObject.getString("country_eng");
-                engCountryMap.put(country, countryEng);
-                findFlag.add(engCountryMap);
+                String perCode = jsonObject.getString("person_code");
+                String perName = jsonObject.getString("person_name");
+                personMap.put(perCode, perName);
             }
-
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        return countryCapitalMap;
+        return personMap;
     }
-    
+
     // DB에서 가져온 데이터를 원하는 수만큼 랜덤으로 추출
     protected Map<String, String> getRandomEntries(Map<String, String> originalMap, int count) {
         List<Map.Entry<String, String>> entryList = new ArrayList<>(originalMap.entrySet());
@@ -172,23 +163,23 @@ public class CapitalQA extends AppCompatActivity {
         setTimer();
     }
 
+    /*
+
     // 문제 생성
     private void setQuestion(int index) {
         Map.Entry<String, String> entry = randomDataList.get(index);
-        question.setText(entry.getKey());
+        question.setVisibility(View.INVISIBLE);
         answer.setText(entry.getValue());
 
-        String countryEng = "";
-        for(int i = 0; i < findFlag.size(); i++) {
-            Map<String, String> engMap = findFlag.get(i);
-            countryEng = engMap.get(entry.getKey()).toLowerCase();
-        }
-        System.out.println(countryEng);
-        int resId = getResources().getIdentifier(countryEng, "drawable", getPackageName());
+        String perCode = entry.getKey();
+        System.out.println(perCode);
+        int resId = getResources().getIdentifier(perCode, "drawable", getPackageName());
         System.out.println(resId);
         BitmapDrawable img = (BitmapDrawable) getResources().getDrawable(resId);
-        imgFlag.setImageDrawable(img);
+        imgPerson.setImageDrawable(img);
     }
+
+     */
 
     public void Commit(View view){
         if(countDownTimer != null){
@@ -214,6 +205,7 @@ public class CapitalQA extends AppCompatActivity {
         btnNext.setVisibility(View.VISIBLE);
     }
 
+    /*
     public void Next(View view){
         count++;
         if (count < randomDataList.size()) {
@@ -227,11 +219,13 @@ public class CapitalQA extends AppCompatActivity {
             btnNext.setVisibility(View.INVISIBLE);
         } else {
             // 모든 문제를 다 푼 경우 결과 페이지로 이동
-            Intent intent = new Intent(CapitalQA.this, CapitalResult.class);
+            Intent intent = new Intent(PersonQA.this, PersonResult.class);
             intent.putExtra("correct", correct);
             intent.putExtra("total", randomDataList.size());
             startActivity(intent);
             finish();
         }
     }
+    */
+
 }
