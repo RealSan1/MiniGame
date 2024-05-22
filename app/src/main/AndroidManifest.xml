@@ -29,6 +29,9 @@
             android:label="@string/title_activity_person_qa"
             android:theme="@style/Theme.MiniGame_Application" />
         <activity
+            android:name=".RankSelect"
+            android:exported="false" />
+        <activity
             android:name=".CapitalResult"
             android:exported="false" />
         <activity
