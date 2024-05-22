@@ -150,14 +150,17 @@
 
     <FrameLayout
         android:id="@+id/popup"
-        android:layout_width="310dp"
-        android:layout_height="459dp"
-        android:background="#CC8E8E"
+        android:layout_width="340dp"
+        android:layout_height="564dp"
+        android:background="@android:color/darker_gray"
+        android:foregroundGravity="center_vertical"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.4"
         tools:visibility="visible">
 
         <TextView
@@ -166,10 +169,12 @@
             android:layout_height="302dp"
             android:layout_gravity="center|top"
             android:layout_marginTop="50dp"
-            android:text="15초 동안 네모 프레임의 색과 일치하는 버튼을 누르는 게임입니다. 연속적으로 블럭을 맞춘다면 추가점수가 있습니다."
+            android:padding="15dp"
+            android:text=" 15초 동안 네모 프레임의 색과 일치하는 버튼의 색을 누르는 게임입니다. \n\n연속적으로 블럭을 맞춘다면 \n가산점이 있습니다. \n\n 친구들과 함께 게임을 하여 누가 더 높은 점수를 얻을 수 있는지 \n 경쟁해보세요."
             android:textAlignment="center"
             android:textColor="#FFFFFF"
-            android:textSize="34sp"
+            android:textSize="20sp"
+            android:textStyle="bold"
             tools:visibility="visible" />
 
         <Button
@@ -177,7 +182,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|center"
-            android:layout_marginBottom="50dp"
+            android:layout_marginBottom="100dp"
             android:background="@drawable/buttonshape"
             android:onClick="start"
             android:text="시작"
