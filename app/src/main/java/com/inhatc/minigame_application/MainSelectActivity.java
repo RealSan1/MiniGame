@@ -25,12 +25,16 @@ public class MainSelectActivity extends AppCompatActivity {
     }
 
     public void SelectRank(View view){
-        Intent intent = new Intent(getApplicationContext(), RankSelect.class);
+        System.out.println("랭킹 검색");
+        Intent intent = new Intent(getApplicationContext(), SelectGameActivity.class);
+        intent.putExtra("select",0);
         startActivity(intent);
     }
 
     public void SelectGames(View view) {
+        System.out.println("게임 검색");
         Intent intent = new Intent(getApplicationContext(), SelectGameActivity.class);
+        intent.putExtra("select", 1);
         startActivity(intent);
     }
 

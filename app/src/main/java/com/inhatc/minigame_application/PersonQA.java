@@ -79,7 +79,7 @@ public class PersonQA extends AppCompatActivity {
         setTimer();
 
         //문제 설정
-        setQuestion(count);
+        //setQuestion(count);
 
         // 모바일 키보드 제출 버튼 또는 키보드 엔터키 눌렀을 때 Commit 메소드 실행
         edtAnswer.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -171,6 +171,8 @@ public class PersonQA extends AppCompatActivity {
         setTimer();
     }
 
+    /*
+
     // 문제 생성
     private void setQuestion(int index) {
         Map.Entry<String, String> entry = randomDataList.get(index);
@@ -188,6 +190,8 @@ public class PersonQA extends AppCompatActivity {
         BitmapDrawable img = (BitmapDrawable) getResources().getDrawable(resId);
         imgFlag.setImageDrawable(img);
     }
+
+     */
 
     public void Commit(View view){
         if(countDownTimer != null){
@@ -211,6 +215,7 @@ public class PersonQA extends AppCompatActivity {
         btnNext.setVisibility(View.VISIBLE);
     }
 
+    /*
     public void Next(View view){
         count++;
         if (count < randomDataList.size()) {
@@ -231,4 +236,6 @@ public class PersonQA extends AppCompatActivity {
             finish();
         }
     }
+    */
+
 }
