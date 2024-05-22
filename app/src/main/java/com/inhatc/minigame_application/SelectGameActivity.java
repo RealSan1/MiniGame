@@ -12,15 +12,18 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class SelectGameActivity extends AppCompatActivity {
 
-    public Intent intent = getIntent();
-    public int value = intent.getIntExtra("select", -1);
+    public static Intent intent;
+    public static int value;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_select_game);
-        System.out.println("value : "+value);
+
+        intent = getIntent();
+        value = intent.getIntExtra("select", -1);
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
