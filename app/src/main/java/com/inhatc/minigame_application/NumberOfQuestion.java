@@ -3,6 +3,7 @@ package com.inhatc.minigame_application;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,6 +23,16 @@ public class NumberOfQuestion extends AppCompatActivity {
         // 전달된 게임 타입 추출
         Intent intent = getIntent();
         gameType = intent.getStringExtra("gameType");
+        TextView txtGameType = (TextView)findViewById(R.id.txtGameType);
+        txtGameType.setText(gameType);
+
+        if("Capital".equals(gameType)){
+            txtGameType.setText("수도 맞히기");
+        } else if ("Person".equals(gameType)) {
+            txtGameType.setText("인물 맞히기");
+        }else{
+            return;
+        }
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());

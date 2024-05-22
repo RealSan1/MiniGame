@@ -36,7 +36,6 @@ public class PersonQA extends AppCompatActivity {
     private EditText edtAnswer;
     private Button btnNext, btnCommit;
     private ImageView imgPerson;
-    private List<Map<String, String>> findPerson;
     private static final long START_TIME_IN_MILLIS = 15000;
     private SocketThread skThread;
     private int count = 0; // 문제 진행률 카운터
@@ -105,27 +104,20 @@ public class PersonQA extends AppCompatActivity {
 
     // DB에서 가져온 데이터 파싱
     protected Map<String, String> ParseData(String json) {
-        Map<String, String> countryCapitalMap = new HashMap<>();
-        findPerson = new ArrayList<>();
-        Map<String, String> engCountryMap = new HashMap<>();
+        Map<String, String> personMap = new HashMap<>();
         try {
             JSONArray jsonArray = new JSONArray(json);
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
-                String country = jsonObject.getString("country");
-                String capital = jsonObject.getString("capital");
-                countryCapitalMap.put(country, capital);
-
-                String countryEng = jsonObject.getString("country_eng");
-                engCountryMap.put(country, countryEng);
-                findPerson.add(engCountryMap);
+                String perCode = jsonObject.getString("person_code");
+                String perName = jsonObject.getString("person_name");
+                personMap.put(perCode, perName);
             }
-
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        return countryCapitalMap;
+        return personMap;
     }
 
     // DB에서 가져온 데이터를 원하는 수만큼 랜덤으로 추출
@@ -176,19 +168,15 @@ public class PersonQA extends AppCompatActivity {
     // 문제 생성
     private void setQuestion(int index) {
         Map.Entry<String, String> entry = randomDataList.get(index);
-        question.setText(entry.getKey());
+        question.setVisibility(View.INVISIBLE);
         answer.setText(entry.getValue());
 
-        String countryEng = "";
-        for(int i = 0; i < findFlag.size(); i++) {
-            Map<String, String> engMap = findFlag.get(i);
-            countryEng = engMap.get(entry.getKey()).toLowerCase();
-        }
-        System.out.println(countryEng);
-        int resId = getResources().getIdentifier(countryEng, "drawable", getPackageName());
+        String perCode = entry.getKey();
+        System.out.println(perCode);
+        int resId = getResources().getIdentifier(perCode, "drawable", getPackageName());
         System.out.println(resId);
         BitmapDrawable img = (BitmapDrawable) getResources().getDrawable(resId);
-        imgFlag.setImageDrawable(img);
+        imgPerson.setImageDrawable(img);
     }
 
      */
@@ -204,6 +192,8 @@ public class PersonQA extends AppCompatActivity {
         if (userAnswer.equalsIgnoreCase(correctAnswer)) {
             result.setText("정답!");
             correct++;
+        } else if ("종료".equals(timerTV.getText())) {
+            result.setText("타임 오버!");
         } else {
             result.setText("오답!");
         }
