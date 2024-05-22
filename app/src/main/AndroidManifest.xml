@@ -23,14 +23,7 @@
         android:theme="@style/Theme.MiniGame_Application"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
-        <activity
-            android:name=".PersonQA"
-            android:exported="false"
-            android:label="@string/title_activity_person_qa"
-            android:theme="@style/Theme.MiniGame_Application" />
-        <activity
-            android:name=".RankSelect"
-            android:exported="false" />
+
         <activity
             android:name=".CapitalResult"
             android:exported="false" />
