@@ -26,16 +26,15 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/BlockBtnG"
+        android:id="@+id/BlockBtnB"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:layout_marginBottom="120dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginBottom="100dp"
         android:background="@drawable/roundbutton"
         android:elevation="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/BlockBtnB"
-        app:layout_constraintHorizontal_bias="0.739"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         tools:visibility="invisible" />
 
     <Button
@@ -43,7 +42,7 @@
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginStart="30dp"
-        android:layout_marginBottom="120dp"
+        android:layout_marginBottom="100dp"
         android:background="@drawable/roundbutton"
         android:elevation="20dp"
         android:visibility="visible"
@@ -54,15 +53,16 @@
         tools:visibility="invisible" />
 
     <Button
-        android:id="@+id/BlockBtnB"
+        android:id="@+id/BlockBtnG"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:layout_marginEnd="28dp"
-        android:layout_marginBottom="120dp"
+        android:layout_marginBottom="100dp"
         android:background="@drawable/roundbutton"
         android:elevation="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/BlockBtnB"
+        app:layout_constraintHorizontal_bias="0.739"
+        app:layout_constraintStart_toStartOf="parent"
         tools:visibility="invisible" />
 
     <TextView
@@ -150,8 +150,8 @@
 
     <FrameLayout
         android:id="@+id/popup"
-        android:layout_width="340dp"
-        android:layout_height="564dp"
+        android:layout_width="325dp"
+        android:layout_height="511dp"
         android:background="@android:color/darker_gray"
         android:foregroundGravity="center_vertical"
         android:visibility="visible"
@@ -170,7 +170,7 @@
             android:layout_gravity="center|top"
             android:layout_marginTop="50dp"
             android:padding="15dp"
-            android:text=" 15초 동안 네모 프레임의 색과 일치하는 버튼의 색을 누르는 게임입니다. \n\n연속적으로 블럭을 맞춘다면 \n가산점이 있습니다. \n\n 친구들과 함께 게임을 하여 누가 더 높은 점수를 얻을 수 있는지 \n 경쟁해보세요."
+            android:text="15초 동안 네모 프레임의 색과 일치하는 버튼을 누르는 게임입니다. \n\n연속적으로 블럭을 맞춘다면 \n가산점이 있습니다. \n\n 친구들과 함께 게임을 하여 누가 더 높은 점수를 얻을 수 있는지 \n 경쟁해보세요."
             android:textAlignment="center"
             android:textColor="#FFFFFF"
             android:textSize="20sp"

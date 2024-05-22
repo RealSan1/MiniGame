@@ -61,6 +61,7 @@ public class BlockPuzzle extends AppCompatActivity implements View.OnClickListen
         Combo = findViewById(R.id.combo);
 
         popup = findViewById(R.id.popup);
+        popup.bringToFront();
         timerTV = findViewById(R.id.txtTimer);
 
         ColorR = R.drawable.red;
@@ -87,6 +88,7 @@ public class BlockPuzzle extends AppCompatActivity implements View.OnClickListen
         Rbtn.setOnClickListener(this);
         Gbtn.setOnClickListener(this);
         Bbtn.setOnClickListener(this);
+
 
         //팝업창 띄우기
         myDialog = new Dialog(this);
