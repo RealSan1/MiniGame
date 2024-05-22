@@ -25,7 +25,7 @@ public class MainSelectActivity extends AppCompatActivity {
     }
 
     public void SelectRank(View view){
-        Intent intent = new Intent(getApplicationContext(), RankActivity.class);
+        Intent intent = new Intent(getApplicationContext(), RankSelect.class);
         startActivity(intent);
     }
 
