@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MiniGame_Application</string>
+    <string name="title_activity_person_qa">PersonQA</string>
 </resources>

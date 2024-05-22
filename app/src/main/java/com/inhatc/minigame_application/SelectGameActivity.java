@@ -36,11 +36,18 @@ public class SelectGameActivity extends AppCompatActivity {
 
     public void Capital(View view){
         Intent intent = new Intent(getApplicationContext(), NumberOfQuestion.class);
+        intent.putExtra("gameType", "Capital");
         startActivity(intent);
     }
 
     public void BlockPuzzle(View view){
         Intent intent = new Intent(getApplicationContext(), BlockPuzzle.class);
+        startActivity(intent);
+    }
+
+    public void Person(View view){
+        Intent intent = new Intent(getApplicationContext(), NumberOfQuestion.class);
+        intent.putExtra("gameType", "Person");
         startActivity(intent);
     }
 }

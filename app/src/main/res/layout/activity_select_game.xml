@@ -76,5 +76,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnMsTest" />
 
+    <android.widget.Button
+        android:id="@+id/btnPerson"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="115dp"
+        android:layout_marginTop="124dp"
+        android:layout_marginEnd="115dp"
+        android:background="@drawable/buttonshape"
+        android:onClick="Person"
+        android:text="인물 맞히기"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnCapital" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
 
