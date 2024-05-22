@@ -78,7 +78,9 @@ public class SelectGameActivity extends AppCompatActivity {
 
     public void Person(View view){
         if(value == 0){
-
+            intent = new Intent(getApplicationContext(), RankActivity.class);
+            RankActivity.receiveGamename("인물 맞히기");
+            startActivity(intent);
         }else if(value == 1) {
             intent = new Intent(getApplicationContext(), NumberOfQuestion.class);
             intent.putExtra("gameType", "Person");
