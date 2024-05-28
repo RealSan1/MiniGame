@@ -57,7 +57,7 @@ public class PersonResult extends AppCompatActivity {
         EditText inputName = (EditText)myDialog.findViewById(R.id.inputName);
 
         Button rankingInput = (Button)myDialog.findViewById(R.id.inputRankingI);
-        gameName.setText("수도 맞히기");
+        gameName.setText("인물 맞히기");
 
         inputScore.setText(String.valueOf(score));
         rankingInput.setOnClickListener(new View.OnClickListener() {

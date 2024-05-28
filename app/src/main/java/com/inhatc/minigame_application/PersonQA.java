@@ -30,6 +30,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 public class PersonQA extends AppCompatActivity {
     private TextView question, answer, result, timerTV;
@@ -62,7 +63,7 @@ public class PersonQA extends AppCompatActivity {
         System.out.println(parseData);
 
         // 가져온 데이터를 문제 개수만큼 랜덤으로 추출해서 리스트에 저장
-        randomDataList = new ArrayList<>(getRandomEntries(parseData, numOfQ).entrySet());
+        randomDataList = getRandomEntries(parseData, numOfQ);
         System.out.println(randomDataList);
 
         question = (TextView)findViewById(R.id.txtQuestion);
@@ -121,17 +122,11 @@ public class PersonQA extends AppCompatActivity {
     }
 
     // DB에서 가져온 데이터를 원하는 수만큼 랜덤으로 추출
-    protected Map<String, String> getRandomEntries(Map<String, String> originalMap, int count) {
+    protected static List<Map.Entry<String, String>> getRandomEntries(Map<String, String> originalMap, int count) {
         List<Map.Entry<String, String>> entryList = new ArrayList<>(originalMap.entrySet());
-        Collections.shuffle(entryList);
-        Map<String, String> randomEntriesMap = new HashMap<>();
+        Collections.shuffle(entryList, new Random()); // 무작위로 섞음
 
-        for (int i = 0; i < Math.min(count, entryList.size()); i++) {
-            Map.Entry<String, String> entry = entryList.get(i);
-            randomEntriesMap.put(entry.getKey(), entry.getValue());
-        }
-
-        return randomEntriesMap;
+        return entryList.subList(0, Math.min(count, entryList.size())); // 원하는 수만큼 반환
     }
 
     // 타이머 설정
