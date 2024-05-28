@@ -3,6 +3,7 @@ package com.inhatc.minigame_application;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,7 +15,9 @@ public class SelectGameActivity extends AppCompatActivity {
 
     public static Intent intent;
     public static int value;
-
+    public static String selectType;
+    public String title;
+    public TextView textView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +26,12 @@ public class SelectGameActivity extends AppCompatActivity {
 
         intent = getIntent();
         value = intent.getIntExtra("select", -1);
+        selectType = intent.getStringExtra("type");
+        title = "  게임 리스트 (" + selectType + ")";
+
+        textView = (TextView)findViewById(R.id.textView2);
+        textView.setText(title);
+
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
