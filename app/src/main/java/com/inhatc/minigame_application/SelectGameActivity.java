@@ -96,4 +96,15 @@ public class SelectGameActivity extends AppCompatActivity {
             startActivity(intent);
         }
     }
+
+    public void Tetris(View view){
+        if(value == 0){
+            intent = new Intent(getApplicationContext(), RankActivity.class);
+            RankActivity.receiveGamename("테트리스");
+            startActivity(intent);
+        }else if(value == 1) {
+            intent = new Intent(getApplicationContext(), Tetris.class);
+            startActivity(intent);
+        }
+    }
 }
