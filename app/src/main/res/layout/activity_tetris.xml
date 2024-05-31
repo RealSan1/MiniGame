@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#4193FC"
+    tools:context=".MainActivity">
+
+    <GridLayout
+        android:id="@+id/tetrisBoard"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/white"
+        android:columnCount="11"
+        android:padding="2dp"
+        android:rowCount="20"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.7"
+        app:layout_constraintHeight_percent="0.76">
+    </GridLayout>
+
+    <LinearLayout
+        android:id="@+id/RigthControls"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintStart_toEndOf="@id/tetrisBoard"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHeight_percent="0.76"
+        app:layout_constraintWidth_percent="0.3">
+
+        <TextView
+            android:id="@+id/txtTimer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="00:00"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:padding="10dp"
+            android:layout_marginBottom="30dp"/>
+
+        <GridLayout
+            android:id="@+id/nextBlock"
+            android:layout_width="match_parent"
+            android:layout_height="115dp"
+            android:background="#797777"
+            android:columnCount="4"
+            android:rowCount="4"
+            app:layout_constraintHeight_percent="0.2"
+            app:layout_constraintWidth_percent="1">
+
+
+        </GridLayout>
+
+
+        <TextView
+            android:id="@+id/txtScore"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="000000"
+            android:textSize="26dp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:padding="10dp"
+            android:layout_marginTop="30dp"/>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/BottomControls"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tetrisBoard"
+        app:layout_constraintHeight_percent="0.24">
+
+        <Button
+            android:id="@+id/btnLeft"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@drawable/buttonshape"
+            android:padding="0dp"
+            android:text="⬅"
+            android:textSize="30dp"
+            android:layout_marginStart="40dp"
+            android:layout_toLeftOf="@+id/btnBottom"
+            android:layout_centerVertical="true"/>
+
+        <Button
+            android:id="@+id/btnRight"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@drawable/buttonshape"
+            android:padding="0dp"
+            android:text="⮕"
+            android:textSize="30dp"
+            android:layout_toRightOf="@+id/btnBottom"
+            android:layout_centerVertical="true"/>
+
+        <Button
+            android:id="@+id/btnBottom"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@drawable/buttonshape"
+            android:padding="0dp"
+            android:text="⬇"
+            android:textSize="30dp"
+            android:layout_centerInParent="true"/>
+
+        <Button
+            android:id="@+id/btnFastBottom"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@drawable/buttonshape"
+            android:padding="0dp"
+            android:text="⟱"
+            android:textSize="40dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"/>
+
+        <Button
+            android:id="@+id/btnTurn"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@drawable/buttonshape"
+            android:padding="0dp"
+            android:text="⟳"
+            android:textSize="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"/>
+
+
+    </RelativeLayout>
+    <FrameLayout
+        android:id="@+id/popup"
+        android:layout_width="325dp"
+        android:layout_height="511dp"
+        android:background="@android:color/darker_gray"
+        android:foregroundGravity="center_vertical"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.4"
+        tools:visibility="visible">
+
+        <TextView
+            android:id="@+id/popUpBlockText"
+            android:layout_width="match_parent"
+            android:layout_height="302dp"
+            android:layout_gravity="center|top"
+            android:layout_marginTop="50dp"
+            android:padding="15dp"
+            android:text="1분 동안 7가지의 블럭을가지고\n블럭의 가로줄을 틈 없이 완성하여 \n높은 점수를 획득하세요\n\n 1줄 : 100점\n2줄 : 300점\n3줄 : 500점\n4줄 : 800점"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            tools:visibility="visible" />
+
+        <Button
+            android:id="@+id/startBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
+            android:layout_marginBottom="100dp"
+            android:background="@drawable/buttonshape"
+            android:onClick="start"
+            android:text="시작"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </FrameLayout>
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
