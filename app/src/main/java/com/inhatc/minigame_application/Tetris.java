@@ -1,13 +1,18 @@
 package com.inhatc.minigame_application;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.GridLayout;
 import android.widget.TextView;
@@ -22,6 +27,7 @@ import androidx.core.view.WindowInsetsCompat;
 import java.util.Random;
 
 public class Tetris extends AppCompatActivity {
+    private SocketThread skThread = SocketThread.getInstance();
     private static final int ROWS = 20;
     private static final int COLS = 11;
     private static final int N_ROWS = 4;
@@ -55,14 +61,16 @@ public class Tetris extends AppCompatActivity {
     private static Drawable currentDrawableBlock;//현재 무슨 색깔블럭인지
     private static Drawable nextDrawableBlock;//다음 블럭이 무슨 색깔인지
     private CountDownTimer countDownTimer;//시간제한
-    private TextView timerTV, scoreTV;//시간 점수
+    private TextView timerTV, scoreTV, gameName, inputScore;//시간 점수 팝업게임명, 점수삽입
     private static int realScore; //진짜 점수용 변수
     private static final long START_TIME_IN_MILLIS = 60000;//시간 제한 1분
-    Dialog myDialog;
+    Dialog myDialog;    //끝 팝업창
     Button Start;
-    FrameLayout popup;
+    FrameLayout popup;  //시작 팝업창
+    Button startBtn;//시작 팝업창 시작 버튼
 
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -115,20 +123,37 @@ public class Tetris extends AppCompatActivity {
         Sblock = ContextCompat.getDrawable(this, R.drawable.border_green);
         Tblock = ContextCompat.getDrawable(this, R.drawable.border_pupple);
 
-        myDialog = new Dialog(this);//팝업창
+        //팝업 창 초기화
+        popup = findViewById(R.id.popup);
+        //시작버튼 초기화
+        startBtn = findViewById(R.id.startBtn);
+        //타이머 텍스트뷰 초기화
+        timerTV = findViewById(R.id.txtTimer);
 
-        Start.setOnClickListener(new View.OnClickListener() {
+        myDialog = new Dialog(this);
+
+        //시작 버튼 클릭 설정
+        startBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                setTimer();
-                popup.setEnabled(false);
-                popup.setVisibility(View.INVISIBLE);
+                //팝업창 숨기기
+                popup.setVisibility(View.GONE);
+                GameStart();
             }
         });
 
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
+    }
+
+    private void GameStart(){
         scoreTV = findViewById(R.id.txtScore);//점수
-        scoreTV.setText(000000);
+        scoreTV.setText("000000");
         realScore = 0;
+        setTimer();//타이머 시작
 
         System.out.println("게임 시작 ");
 
@@ -151,18 +176,7 @@ public class Tetris extends AppCompatActivity {
             }
         };
         handler.postDelayed(runnable, INTERVAL);
-
-
-
-
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
     }
-
-
 
     //보드판 생성
     private void initGridBoard(GridLayout gridLayout){
@@ -518,7 +532,7 @@ public class Tetris extends AppCompatActivity {
     //실제 한줄을 없애는 로직
     private void clearRow(int[] clsRow){
         Drawable blockDrawable = ContextCompat.getDrawable(this, R.drawable.border);
-        int score=0;
+        int score = 0;
         //Drawable blockRed = ContextCompat.getDrawable(this,R.drawable.border_red);
         for(int i = 0; i<clsRow.length; i++){
             if(clsRow[i]!=-1){
@@ -541,7 +555,7 @@ public class Tetris extends AppCompatActivity {
     //게임오버
     private void gameOverBlock(){
         //블럭이 겹치면 게임 오버
-        finish();
+        popupView();
     }
 
     //게임오버 시간제한
@@ -551,42 +565,103 @@ public class Tetris extends AppCompatActivity {
             @Override
             public void onTick(long millisUntilFinished) {
                 int secondsRemaining = (int) (millisUntilFinished / 1000);
-                timerTV.setText(String.valueOf(secondsRemaining));
-                if (secondsRemaining < 6) {
+                timerTV.setText(String.format("%02d:%02d", secondsRemaining / 60, secondsRemaining % 60));
+                if (secondsRemaining < 10) {
                     timerTV.setTextColor(Color.RED);
                 }
                 if(secondsRemaining == 0){
                     onFinish();
+                    popupView();
+
                 }
             }
             @Override
             public void onFinish() {
                 timerTV.setText("종료");
-                finish();
             }
         }.start();
     }
 
+    //점수 계산 함수
     private void score_calculation(int score){
+        String formattedScore;
         switch(score){
             case 1:
                 realScore+=100;
-                scoreTV.setText(realScore);
+                formattedScore = String.format("%06d", realScore);
+                scoreTV.setText(formattedScore);
                 break;
             case 2:
                 realScore+=300;
-                scoreTV.setText(realScore);
+                formattedScore = String.format("%06d", realScore);
+                scoreTV.setText(formattedScore);
                 break;
             case 3:
                 realScore+=500;
-                scoreTV.setText(realScore);
+                formattedScore = String.format("%06d", realScore);
+                scoreTV.setText(formattedScore);
                 break;
             case 4:
                 realScore+=800;
-                scoreTV.setText(realScore);
+                formattedScore = String.format("%06d", realScore);
+                scoreTV.setText(formattedScore);
                 break;
             default:
                 break;
+        }
+    }
+
+    //게임 종료 후 팝업창
+    private void popupView(){
+        stopBlock();
+        myDialog.setContentView(R.layout.inputranking);
+        myDialog.setTitle("랭킹");
+        myDialog.setCancelable(true);
+        gameName = (TextView)myDialog.findViewById(R.id.inputGameName);
+        inputScore = (TextView)myDialog.findViewById(R.id.inputRankingScore);
+        EditText inputName = (EditText)myDialog.findViewById(R.id.inputName);
+
+        Button rankingInput = (Button)myDialog.findViewById(R.id.inputRankingI);
+        gameName.setText("테트리스");
+
+        inputScore.setText(String.valueOf(realScore));
+
+        rankingInput.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String playerName = inputName.getText().toString();
+                //점수 DB전송
+                int result = skThread.sendDataToServer(playerName, realScore, gameName.getText().toString());
+                //result=1 입력 성공, 2 닉네임 중복
+                if(result == 1){
+                    Log.d("result", "입력 성공");
+                    finish();
+                }else{
+                    Log.d("result", "입력 실패");
+                    finish();
+                }
+            }
+        });
+
+        myDialog.show();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                inputName.requestFocus();
+                InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                if (inputMethodManager != null) {
+                    inputMethodManager.showSoftInput(inputName, InputMethodManager.SHOW_IMPLICIT);
+                }
+            }
+        }, 300);
+    }
+
+    //테트리스 블럭 움직임 멈추기 함수
+    private void stopBlock(){
+        if(handler != null && runnable != null){
+            handler.removeCallbacks(runnable);
+            handler = null;
+            runnable = null;
         }
     }
 }

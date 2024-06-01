@@ -249,7 +249,7 @@
                     android:layout_marginTop="14dp"
                     android:layout_marginBottom="14dp"
                     android:background="@drawable/buttonshape2"
-                    android:onClick="Capital">
+                    android:onClick="Tetris">
 
                     <ImageView
                         android:id="@+id/tetris_img"
