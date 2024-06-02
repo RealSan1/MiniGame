@@ -5,12 +5,12 @@ plugins {
 
 android {
     namespace 'com.inhatc.minigame_application'
-    compileSdkPreview "VanillaIceCream"
+    compileSdkVersion 34
 
     defaultConfig {
         applicationId "com.inhatc.minigame_application"
-        minSdkPreview "VanillaIceCream"
-        targetSdkPreview "VanillaIceCream"
+        minSdkVersion 26
+        targetSdkVersion 33
         versionCode 1
         versionName "1.0"
 
