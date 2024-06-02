@@ -151,7 +151,7 @@ public class Tetris extends AppCompatActivity {
 
     private void GameStart(){
         scoreTV = findViewById(R.id.txtScore);//점수
-        scoreTV.setText("000000");
+        scoreTV.setText("00000");
         realScore = 0;
         setTimer();//타이머 시작
 
@@ -588,22 +588,22 @@ public class Tetris extends AppCompatActivity {
         switch(score){
             case 1:
                 realScore+=100;
-                formattedScore = String.format("%06d", realScore);
+                formattedScore = String.format("%05d", realScore);
                 scoreTV.setText(formattedScore);
                 break;
             case 2:
                 realScore+=300;
-                formattedScore = String.format("%06d", realScore);
+                formattedScore = String.format("%05d", realScore);
                 scoreTV.setText(formattedScore);
                 break;
             case 3:
                 realScore+=500;
-                formattedScore = String.format("%06d", realScore);
+                formattedScore = String.format("%05d", realScore);
                 scoreTV.setText(formattedScore);
                 break;
             case 4:
                 realScore+=800;
-                formattedScore = String.format("%06d", realScore);
+                formattedScore = String.format("%05d", realScore);
                 scoreTV.setText(formattedScore);
                 break;
             default:
