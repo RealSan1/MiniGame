@@ -33,9 +33,15 @@ public class RankActivity extends AppCompatActivity {
         String[] jsonData = ParseData(skThread.SelectRankList(GameName));
         System.out.println("GameName 값 : "+GameName);
 
+        System.out.println("json값 :"+jsonData);
+
         String[] apptitle = GameName.split(" ");
 
-        toolbarTitle.setText(apptitle[0]+" "+apptitle[1]);
+        if (apptitle.length >= 2) {
+            toolbarTitle.setText(apptitle[0] + " " + apptitle[1]);
+        } else {
+            toolbarTitle.setText(GameName); // 전체 이름을 사용
+        }
 
         /*
         for(int i = 0; i<jsonData.length; i+=4){
