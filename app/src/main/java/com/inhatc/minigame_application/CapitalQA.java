@@ -1,5 +1,6 @@
 package com.inhatc.minigame_application;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -33,9 +34,9 @@ import java.util.Map;
 import java.util.Random;
 
 public class CapitalQA extends AppCompatActivity {
-    private TextView question, answer, result, timerTV;
+    private TextView question, answer, result, timerTV, num, gameName;
     private EditText edtAnswer;
-    private Button btnNext, btnCommit;
+    private Button btnNext, btnCommit, btnUp, btnDown;
     private ImageView imgFlag;
     private List<Map<String, String>> findFlag;
     private static final long START_TIME_IN_MILLIS = 15000;
@@ -44,6 +45,7 @@ public class CapitalQA extends AppCompatActivity {
     private int correct = 0; // 문제 정답률 카운터
     private List<Map.Entry<String, String>> randomDataList;
     private CountDownTimer countDownTimer;
+    Dialog myDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +78,41 @@ public class CapitalQA extends AppCompatActivity {
         btnCommit = (Button)findViewById(R.id.btnCommit);
         btnNext = (Button)findViewById(R.id.btnNext);
         imgFlag = (ImageView)findViewById(R.id.imgFlag);
+
+        //팝업창 띄우기
+        myDialog = new Dialog(this);
+        myDialog.setContentView(R.layout.numofquestion);
+        // 팝업창 설정
+        myDialog.setTitle("문제 개수");
+        myDialog.setCancelable(true);
+        myDialog.setCanceledOnTouchOutside(true);
+        num = (TextView)myDialog.findViewById(R.id.NumOfQuestionSetting);
+        gameName = (TextView)myDialog.findViewById(R.id.inputGameName);
+        btnUp = (Button)myDialog.findViewById(R.id.countupbtn);
+        btnDown = (Button)myDialog.findViewById(R.id.countdownbtn);
+        gameName.setText("수도 맞추기");
+        btnUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int temp = Integer.parseInt(num.getText().toString());
+                    temp+=5;
+                    if(temp > 30) temp=-5;
+                    num.setText(temp);
+                 }
+        });
+
+        btnDown.setOnClickListener(new View.OnClickListener() {
+               @Override
+               public void onClick(View v) {
+                   int temp = Integer.parseInt(num.getText().toString());
+                   temp-=5;
+                   if(temp < 5) temp=+5;
+                   num.setText(temp);
+
+               }
+       });
+
+
 
         // 타이머 설정
         setTimer();
