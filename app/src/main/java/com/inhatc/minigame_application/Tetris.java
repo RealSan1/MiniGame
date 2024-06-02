@@ -664,4 +664,11 @@ public class Tetris extends AppCompatActivity {
             runnable = null;
         }
     }
+
+    //뒤로가기 종료 시
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        stopBlock();
+    }
 }
