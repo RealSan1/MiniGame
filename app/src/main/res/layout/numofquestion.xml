@@ -16,7 +16,7 @@
 
         <TextView
             android:id="@+id/inputGameName"
-            android:layout_width="165dp"
+            android:layout_width="229dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center|top"
             android:layout_marginTop="50dp"

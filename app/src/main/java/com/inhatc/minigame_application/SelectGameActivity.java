@@ -68,7 +68,7 @@ public class SelectGameActivity extends AppCompatActivity {
             RankActivity.receiveGamename("수도 맞히기");
             startActivity(intent);
         }else if(value == 1) {
-            intent = new Intent(getApplicationContext(), NumberOfQuestion.class);
+            intent = new Intent(getApplicationContext(), CapitalQA.class);
             intent.putExtra("gameType", "Capital");
             startActivity(intent);
         }
@@ -91,7 +91,7 @@ public class SelectGameActivity extends AppCompatActivity {
             RankActivity.receiveGamename("인물 맞히기");
             startActivity(intent);
         }else if(value == 1) {
-            intent = new Intent(getApplicationContext(), NumberOfQuestion.class);
+            intent = new Intent(getApplicationContext(), PersonQA.class);
             intent.putExtra("gameType", "Person");
             startActivity(intent);
         }
@@ -107,4 +107,5 @@ public class SelectGameActivity extends AppCompatActivity {
             startActivity(intent);
         }
     }
+
 }

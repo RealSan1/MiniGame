@@ -1,11 +1,13 @@
 package com.inhatc.minigame_application;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -33,38 +35,26 @@ import java.util.Map;
 import java.util.Random;
 
 public class PersonQA extends AppCompatActivity {
-    private TextView question, answer, result, timerTV;
-    private EditText edtAnswer;
-    private Button btnNext, btnCommit;
-    private ImageView imgPerson;
+    TextView question, answer, result, timerTV, num, gameName;
+    EditText edtAnswer;
+    Button btnNext, btnCommit, btnUp, btnDown, checkbtn;
+
+    ImageView imgPerson;
     private static final long START_TIME_IN_MILLIS = 15000;
-    private SocketThread skThread;
-    private int count = 0; // 문제 진행률 카운터
-    private int correct = 0; // 문제 정답률 카운터
-    private List<Map.Entry<String, String>> randomDataList;
-    private CountDownTimer countDownTimer;
+    SocketThread skThread;
+    int count = 0; // 문제 진행률 카운터
+    int correct = 0; // 문제 정답률 카운터
+    List<Map.Entry<String, String>> randomDataList;
+    CountDownTimer countDownTimer;
+
+    Dialog myDialog;
+    int numOfQ, temp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_person_qa);
 
-        // 문제 개수 가져오기
-        int numOfQ = getIntent().getIntExtra("num",10);
-
-        skThread = SocketThread.getInstance();
-
-        //서버로 부터 받아온 mysql json형식의 데이터
-        String data = skThread.getPersonQA();
-        System.out.println(data);
-
-        // DB에서 가져온 데이터 파싱해 Map 형태로 받아옴
-        Map<String, String> parseData = ParseData(data);
-        System.out.println(parseData);
-
-        // 가져온 데이터를 문제 개수만큼 랜덤으로 추출해서 리스트에 저장
-        randomDataList = getRandomEntries(parseData, numOfQ);
-        System.out.println(randomDataList);
 
         question = (TextView)findViewById(R.id.txtQuestion);
         answer = (TextView)findViewById(R.id.txtAnswer);
@@ -75,11 +65,69 @@ public class PersonQA extends AppCompatActivity {
         btnNext = (Button)findViewById(R.id.btnNext);
         imgPerson = (ImageView)findViewById(R.id.imgPerson);
 
-        // 타이머 설정
-        setTimer();
+        //팝업창 설정 시작
+        myDialog = new Dialog(this);
+        myDialog.setContentView(R.layout.numofquestion);
+        myDialog.setTitle("문제 개수");
+        myDialog.setCancelable(true);
+        num = (TextView) myDialog.findViewById(R.id.NumOfQuestionSetting);
+        gameName = (TextView) myDialog.findViewById(R.id.inputGameName);
+        btnUp = (Button) myDialog.findViewById(R.id.countupbtn);
+        btnDown = (Button) myDialog.findViewById(R.id.countdownbtn);
+        checkbtn = (Button) myDialog.findViewById(R.id.NumOfQuestionInputBtn);
+        gameName.setText("인물 맞추기");
+        myDialog.show();
 
-        //문제 설정
-        setQuestion(count);
+        btnUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                temp = Integer.parseInt(num.getText().toString());
+                temp += 5;
+                if (temp > 30) temp = 30;
+                num.setText(String.valueOf(temp));
+            }
+        });
+
+        btnDown.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                temp = Integer.parseInt(num.getText().toString());
+                temp -= 5;
+                if (temp < 5) temp = 5;
+                num.setText(String.valueOf(temp));
+            }
+        });
+
+        checkbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                numOfQ = Integer.parseInt(num.getText().toString());
+                Log.d("CapitalQA", "Number of Questions: " + numOfQ);
+
+                skThread = SocketThread.getInstance();
+
+                //서버로 부터 받아온 mysql json형식의 데이터
+                String data = skThread.getPersonQA();
+                Log.d("CapitalQA", "Data received: " + data);
+
+                // DB에서 가져온 데이터 파싱해 Map 형태로 받아옴
+                Map<String, String> parseData = ParseData(data);
+                Log.d("CapitalQA", "Parsed Data: " + parseData.toString());
+
+                // 랜덤 문제 리스트 설정
+                randomDataList = getRandomEntries(parseData, numOfQ);
+                Log.d("Random Data List", randomDataList.toString());
+
+                // 타이머 설정
+                setTimer();
+
+                // 문제 설정
+                setQuestion(count);
+                myDialog.dismiss();
+            }
+        });
+
+        //팝업 설정 끝
 
         // 모바일 키보드 제출 버튼 또는 키보드 엔터키 눌렀을 때 Commit 메소드 실행
         edtAnswer.setOnEditorActionListener(new TextView.OnEditorActionListener() {
