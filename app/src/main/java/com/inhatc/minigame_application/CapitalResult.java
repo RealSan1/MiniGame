@@ -54,10 +54,10 @@ public class CapitalResult extends AppCompatActivity {
         myDialog.setTitle("랭킹");
         myDialog.setCancelable(true);
         gameName = (TextView)myDialog.findViewById(R.id.inputGameName);
-        inputScore = (TextView)myDialog.findViewById(R.id.inputRankingScore);
+        inputScore = (TextView)myDialog.findViewById(R.id.inputScore);
         EditText inputName = (EditText)myDialog.findViewById(R.id.inputName);
 
-        Button rankingInput = (Button)myDialog.findViewById(R.id.inputRankingI);
+        Button rankingInput = (Button)myDialog.findViewById(R.id.input);
         gameName.setText("수도 맞히기");
 
         inputScore.setText(String.valueOf(score));

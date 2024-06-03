@@ -1,11 +1,13 @@
 package com.inhatc.minigame_application;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -33,17 +35,20 @@ import java.util.Map;
 import java.util.Random;
 
 public class CapitalQA extends AppCompatActivity {
-    private TextView question, answer, result, timerTV;
-    private EditText edtAnswer;
-    private Button btnNext, btnCommit;
-    private ImageView imgFlag;
-    private List<Map<String, String>> findFlag;
+    TextView question, answer, result, timerTV, num, gameName;
+    EditText edtAnswer;
+    Button btnNext, btnCommit, btnUp, btnDown, checkbtn;
+    ImageView imgFlag;
+    List<Map<String, String>> findFlag;
     private static final long START_TIME_IN_MILLIS = 15000;
-    private SocketThread skThread;
-    private int count = 0; // 문제 진행률 카운터
-    private int correct = 0; // 문제 정답률 카운터
-    private List<Map.Entry<String, String>> randomDataList;
-    private CountDownTimer countDownTimer;
+    SocketThread skThread;
+    int count = 0; // 문제 진행률 카운터
+    int correct = 0; // 문제 정답률 카운터
+    List<Map.Entry<String, String>> randomDataList;
+    CountDownTimer countDownTimer;
+    Dialog myDialog;
+
+    int numOfQ, temp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,37 +56,80 @@ public class CapitalQA extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_capital_qa);
 
-        // 문제 개수 가져오기
-        int numOfQ = getIntent().getIntExtra("num",1);
 
-        skThread = SocketThread.getInstance();
 
-        //서버로 부터 받아온 mysql json형식의 데이터
-        String data = skThread.getq_a();
-        System.out.println(data);
+        question = (TextView) findViewById(R.id.txtQuestion);
+        answer = (TextView) findViewById(R.id.txtAnswer);
+        result = (TextView) findViewById(R.id.txtResult);
+        timerTV = (TextView) findViewById(R.id.txtTimer);
+        edtAnswer = (EditText) findViewById(R.id.editTextAnswer);
+        btnCommit = (Button) findViewById(R.id.btnCommit);
+        btnNext = (Button) findViewById(R.id.btnNext);
+        imgFlag = (ImageView) findViewById(R.id.imgFlag);
 
-        // DB에서 가져온 데이터 파싱해 Map 형태로 받아옴
-        Map<String, String> parseData = ParseData(data);
-        System.out.println(parseData);
+        //팝업창 설정 시작
+        myDialog = new Dialog(this);
+        myDialog.setContentView(R.layout.numofquestion);
+        myDialog.setTitle("문제 개수");
+        myDialog.setCancelable(true);
+        num = (TextView) myDialog.findViewById(R.id.NumOfQuestionSetting);
+        gameName = (TextView) myDialog.findViewById(R.id.inputGameName);
+        btnUp = (Button) myDialog.findViewById(R.id.countupbtn);
+        btnDown = (Button) myDialog.findViewById(R.id.countdownbtn);
+        checkbtn = (Button) myDialog.findViewById(R.id.NumOfQuestionInputBtn);
+        gameName.setText("수도 맞추기");
+        myDialog.show();
 
-        // 가져온 데이터를 문제 개수만큼 랜덤으로 추출해서 리스트에 저장
-        randomDataList = getRandomEntries(parseData, numOfQ);
-        System.out.println(randomDataList);
+        btnUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                temp = Integer.parseInt(num.getText().toString());
+                temp += 5;
+                if (temp > 30) temp = 30;
+                num.setText(String.valueOf(temp));
+            }
+        });
 
-        question = (TextView)findViewById(R.id.txtQuestion);
-        answer = (TextView)findViewById(R.id.txtAnswer);
-        result = (TextView)findViewById(R.id.txtResult);
-        timerTV = (TextView)findViewById(R.id.txtTimer);
-        edtAnswer = (EditText)findViewById(R.id.editTextAnswer);
-        btnCommit = (Button)findViewById(R.id.btnCommit);
-        btnNext = (Button)findViewById(R.id.btnNext);
-        imgFlag = (ImageView)findViewById(R.id.imgFlag);
+        btnDown.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                temp = Integer.parseInt(num.getText().toString());
+                temp -= 5;
+                if (temp < 5) temp = 5;
+                num.setText(String.valueOf(temp));
+            }
+        });
 
-        // 타이머 설정
-        setTimer();
+        checkbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                numOfQ = Integer.parseInt(num.getText().toString());
+                Log.d("CapitalQA", "Number of Questions: " + numOfQ);
 
-        //문제 설정
-        setQuestion(count);
+                skThread = SocketThread.getInstance();
+
+                //서버로 부터 받아온 mysql json형식의 데이터
+                String data = skThread.getq_a();
+                Log.d("CapitalQA", "Data received: " + data);
+
+                // DB에서 가져온 데이터 파싱해 Map 형태로 받아옴
+                Map<String, String> parseData = ParseData(data);
+                Log.d("CapitalQA", "Parsed Data: " + parseData.toString());
+
+                // 랜덤 문제 리스트 설정
+                randomDataList = getRandomEntries(parseData, numOfQ);
+                Log.d("Random Data List", randomDataList.toString());
+
+                // 타이머 설정
+                setTimer();
+
+                // 문제 설정
+                setQuestion(count);
+                myDialog.dismiss();
+            }
+        });
+
+        //팝업 설정 끝
 
         // 모바일 키보드 제출 버튼 또는 키보드 엔터키 눌렀을 때 Commit 메소드 실행
         edtAnswer.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -129,7 +177,7 @@ public class CapitalQA extends AppCompatActivity {
 
         return countryCapitalMap;
     }
-    
+
     // DB에서 가져온 데이터를 원하는 수만큼 랜덤으로 추출
     protected static List<Map.Entry<String, String>> getRandomEntries(Map<String, String> originalMap, int count) {
         List<Map.Entry<String, String>> entryList = new ArrayList<>(originalMap.entrySet());
@@ -139,7 +187,7 @@ public class CapitalQA extends AppCompatActivity {
     }
 
     // 타이머 설정
-    public void setTimer(){
+    public void setTimer() {
         timerTV.setTextColor(Color.WHITE);
         countDownTimer = new CountDownTimer(START_TIME_IN_MILLIS, 1000) {
             @Override
@@ -149,10 +197,11 @@ public class CapitalQA extends AppCompatActivity {
                 if (secondsRemaining < 6) {
                     timerTV.setTextColor(Color.RED);
                 }
-                if(secondsRemaining == 0){
+                if (secondsRemaining == 0) {
                     onFinish();
                 }
             }
+
             @Override
             public void onFinish() {
                 timerTV.setText("종료");
@@ -160,6 +209,7 @@ public class CapitalQA extends AppCompatActivity {
             }
         }.start();
     }
+
     private void resetTimer() {
         if (countDownTimer != null) {
             countDownTimer.cancel();
@@ -174,7 +224,7 @@ public class CapitalQA extends AppCompatActivity {
         answer.setText(entry.getValue());
 
         String countryEng = "";
-        for(int i = 0; i < findFlag.size(); i++) {
+        for (int i = 0; i < findFlag.size(); i++) {
             Map<String, String> engMap = findFlag.get(i);
             countryEng = engMap.get(entry.getKey()).toLowerCase();
         }
@@ -185,8 +235,8 @@ public class CapitalQA extends AppCompatActivity {
         imgFlag.setImageDrawable(img);
     }
 
-    public void Commit(View view){
-        if(countDownTimer != null){
+    public void Commit(View view) {
+        if (countDownTimer != null) {
             countDownTimer.cancel();
         }
 
@@ -209,7 +259,7 @@ public class CapitalQA extends AppCompatActivity {
         btnNext.setVisibility(View.VISIBLE);
     }
 
-    public void Next(View view){
+    public void Next(View view) {
         count++;
         if (count < randomDataList.size()) {
             setQuestion(count);

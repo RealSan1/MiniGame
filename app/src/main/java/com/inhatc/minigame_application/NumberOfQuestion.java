@@ -13,6 +13,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class NumberOfQuestion extends AppCompatActivity {
     private String gameType;
+    //삭제예정
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -288,7 +288,7 @@
                     android:layout_marginTop="14dp"
                     android:layout_marginBottom="14dp"
                     android:background="@drawable/buttonshape2"
-                    android:onClick="Capital">
+                    android:onClick="Capital1">
 
                     <ImageView
                         android:id="@+id/capital_img_4"
