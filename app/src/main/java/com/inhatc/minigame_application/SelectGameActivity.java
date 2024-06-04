@@ -108,16 +108,28 @@ public class SelectGameActivity extends AppCompatActivity {
         }
     }
 
-    public void Country(View view){
+    public void Swipe(View view){
         if(value == 0){
             intent = new Intent(getApplicationContext(), RankActivity.class);
-            RankActivity.receiveGamename("나라 이름 맞히기");
+            RankActivity.receiveGamename("스와이프");
             startActivity(intent);
         }else if(value == 1) {
-            intent = new Intent(getApplicationContext(), CountryQA.class);
-            intent.putExtra("gameType", "Country");
+            intent = new Intent(getApplicationContext(), Swipe.class);
             startActivity(intent);
         }
     }
+
+    public void Country(View view){
+        if(value == 0){
+            intent = new Intent(getApplicationContext(), RankActivity.class);
+            RankActivity.receiveGamename("나라이름 맞추기");
+            startActivity(intent);
+        }else if(value == 1) {
+            intent = new Intent(getApplicationContext(), CountryQA.class);
+            startActivity(intent);
+        }
+    }
+
+
 
 }

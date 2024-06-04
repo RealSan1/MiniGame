@@ -24,10 +24,7 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".CountryQA"
-            android:exported="false" />
-        <activity
-            android:name=".CountryResult"
+            android:name=".Swipe"
             android:exported="false" />
 
         <meta-data
@@ -43,10 +40,10 @@
             android:label="@string/title_activity_person_qa"
             android:theme="@style/Theme.MiniGame_Application" />
         <activity
-            android:name=".CapitalResult"
+            android:name=".RankSelect"
             android:exported="false" />
         <activity
-            android:name=".NumberOfQuestion"
+            android:name=".CapitalResult"
             android:exported="false" />
         <activity
             android:name=".BlockPuzzle"
@@ -71,6 +68,12 @@
             android:exported="false" />
         <activity
             android:name=".MsTest"
+            android:exported="false" />
+        <activity
+            android:name=".CountryQA"
+            android:exported="false" />
+        <activity
+            android:name=".CountryResult"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
