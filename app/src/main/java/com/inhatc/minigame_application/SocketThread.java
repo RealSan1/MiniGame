@@ -181,4 +181,26 @@ public class SocketThread extends Thread{
         return q_aData;
     }
 
+    public synchronized String getLOLUltQA(){
+        try{
+            q_aMethod = true;
+            System.out.println("문제와 답 가져오기 메서드 진입 성공");
+            outData = "6"+","+"get_qa_lolult";
+            ckMethod = 1;
+            trigger = true;
+            System.out.println("ThAccess="+ThAccess+"  ckMethod="+ckMethod);
+            while(ThAccess.get() != 1){
+                //System.out.println("소켓스레드 진행 중 메소드 wait");
+                wait();
+            }
+            System.out.println("문제와 답 가져오기 메소드 끝");
+            ThAccess.set(0);
+            ckMethod=0;
+        }catch(InterruptedException e){
+            e.printStackTrace();
+        }
+        q_aMethod = false;
+        return q_aData;
+    }
+
 }

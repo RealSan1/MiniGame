@@ -29,6 +29,12 @@
         <activity
             android:name=".CountryResult"
             android:exported="false" />
+        <activity
+            android:name=".LOLUltQA"
+            android:exported="false" />
+        <activity
+            android:name=".LOLUltResult"
+            android:exported="false" />
 
         <meta-data
             android:name="com.google.android.actions"
