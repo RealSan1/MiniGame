@@ -132,6 +132,10 @@ public class Tetris extends AppCompatActivity {
 
         myDialog = new Dialog(this);
 
+        //게임판 생성
+        GridLayout tetrisBoard = findViewById(R.id.tetrisBoard);
+        initGridBoard(tetrisBoard);
+
         //시작 버튼 클릭 설정
         startBtn.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -156,10 +160,6 @@ public class Tetris extends AppCompatActivity {
         setTimer();//타이머 시작
 
         System.out.println("게임 시작 ");
-
-        //게임판 생성
-        GridLayout tetrisBoard = findViewById(R.id.tetrisBoard);
-        initGridBoard(tetrisBoard);
 
         //7가지의 블럭을 생성 후 이를 토대로 랜덤 가져오기
         s_blocks = Seven_Block.createBlocks();
