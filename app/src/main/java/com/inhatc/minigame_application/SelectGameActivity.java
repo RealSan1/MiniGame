@@ -108,4 +108,15 @@ public class SelectGameActivity extends AppCompatActivity {
         }
     }
 
+    public void Swipe(View view){
+        if(value == 0){
+            intent = new Intent(getApplicationContext(), RankActivity.class);
+            RankActivity.receiveGamename("테트리스");
+            startActivity(intent);
+        }else if(value == 1) {
+            intent = new Intent(getApplicationContext(), Swipe.class);
+            startActivity(intent);
+        }
+    }
+
 }
