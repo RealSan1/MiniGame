@@ -75,7 +75,7 @@ public class PersonQA extends AppCompatActivity {
         btnUp = (Button) myDialog.findViewById(R.id.countupbtn);
         btnDown = (Button) myDialog.findViewById(R.id.countdownbtn);
         checkbtn = (Button) myDialog.findViewById(R.id.NumOfQuestionInputBtn);
-        gameName.setText("인물 맞추기");
+        gameName.setText("인물 맞히기");
         myDialog.show();
 
         btnUp.setOnClickListener(new View.OnClickListener() {
@@ -83,7 +83,7 @@ public class PersonQA extends AppCompatActivity {
             public void onClick(View v) {
                 temp = Integer.parseInt(num.getText().toString());
                 temp += 5;
-                if (temp > 30) temp = 30;
+                if (temp > 50) temp = 50;
                 num.setText(String.valueOf(temp));
             }
         });
