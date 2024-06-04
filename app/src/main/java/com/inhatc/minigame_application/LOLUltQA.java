@@ -217,7 +217,7 @@ public class LOLUltQA extends AppCompatActivity {
     private void setQuestion(int index) {
         Map.Entry<String, String> entry = randomDataList.get(index);
         question.setVisibility(View.INVISIBLE);
-        question.setText(entry.getKey());
+        question.setText(entry.getKey() + " 궁극기");
         answer.setText(entry.getValue());
 
         // 이미지 탐색 후 설정
@@ -239,8 +239,8 @@ public class LOLUltQA extends AppCompatActivity {
             countDownTimer.cancel();
         }
 
-        String userAnswer = edtAnswer.getText().toString().trim();
-        String correctAnswer = randomDataList.get(count).getValue().trim();
+        String userAnswer = edtAnswer.getText().toString().replaceAll(" ", "");
+        String correctAnswer = randomDataList.get(count).getValue().replaceAll(" ", "");;
 
         if (userAnswer.equalsIgnoreCase(correctAnswer)) {
             result.setText("정답!");
