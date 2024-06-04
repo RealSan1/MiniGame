@@ -16,7 +16,7 @@
 
         <TextView
             android:id="@+id/inputGameName"
-            android:layout_width="229dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center|top"
             android:layout_marginTop="50dp"
@@ -51,7 +51,7 @@
             android:layout_width="109dp"
             android:layout_height="60sp"
             android:layout_gravity="center"
-            android:text="10"
+            android:text="30"
             android:textAlignment="center"
             android:textSize="30dp"
             android:textStyle="bold" />
