@@ -120,4 +120,16 @@ public class SelectGameActivity extends AppCompatActivity {
         }
     }
 
+    public void LOLUlt(View view){
+        if(value == 0){
+            intent = new Intent(getApplicationContext(), RankActivity.class);
+            RankActivity.receiveGamename("롤 궁극기 맞히기");
+            startActivity(intent);
+        }else if(value == 1) {
+            intent = new Intent(getApplicationContext(), LOLUltQA.class);
+            intent.putExtra("gameType", "LOLUlt");
+            startActivity(intent);
+        }
+    }
+
 }
