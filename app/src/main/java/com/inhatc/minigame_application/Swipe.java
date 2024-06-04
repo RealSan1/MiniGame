@@ -2,6 +2,7 @@ package com.inhatc.minigame_application;
 
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
+import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -30,9 +31,11 @@ public class Swipe extends AppCompatActivity implements View.OnClickListener{
     ImageView BImg1, BImg2, BImg3, BImg4, BImg5, BImg6, BImg7, D, M;
     ArrayList<Integer> list = new ArrayList<>();
     Random random = new Random();
-    TextView scoreText, timerTV;
+    TextView scoreText, timerTV, gameName, inputScore;;
     int Dock, Modapi, randomImg, score;
     Boolean isClicked = false;
+    Dialog myDialog;
+    private SocketThread skThread = SocketThread.getInstance();
 
     private static final long START_TIME_IN_MILLIS = 5000;
 
@@ -79,6 +82,8 @@ public class Swipe extends AppCompatActivity implements View.OnClickListener{
 
         Rbtn.setOnClickListener(this);
         Lbtn.setOnClickListener(this);
+        //팝업창 띄우기
+        myDialog = new Dialog(this);
         setTimer();//타이머 시작
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
@@ -100,7 +105,36 @@ public class Swipe extends AppCompatActivity implements View.OnClickListener{
                     timerTV.setTextColor(Color.RED);
                 }
                 if(secondsRemaining == 0){
-                    //팝업창 추가예정
+                    // 팝업창 설정
+                    myDialog.setContentView(R.layout.inputranking);
+                    myDialog.setTitle("랭킹");
+                    myDialog.setCancelable(true);
+                    gameName = (TextView)myDialog.findViewById(R.id.inputGameName);
+                    inputScore = (TextView)myDialog.findViewById(R.id.inputScore);
+                    EditText inputName = (EditText)myDialog.findViewById(R.id.inputName);
+
+                    Button rankingInput = (Button)myDialog.findViewById(R.id.input);
+                    gameName.setText("스와이프");
+
+                    inputScore.setText(String.valueOf(score));
+                    rankingInput.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            String playerName = inputName.getText().toString();
+                            //점수 DB전송
+                            int result = skThread.sendDataToServer(playerName, score, gameName.getText().toString());
+                            //result=1 입력 성공, 2 닉네임 중복
+                            if(result == 1){
+                                Log.d("result", "입력 성공");
+                                finish();
+                            }else{
+                                Log.d("result", "입력 실패");
+                                finish();
+                            }
+                        }
+                    });
+
+                    myDialog.show();
                 }
             }
             @Override
@@ -133,11 +167,8 @@ public class Swipe extends AppCompatActivity implements View.OnClickListener{
         } else if (view == Lbtn) {
             // 왼쪽 버튼 클릭 시 왼쪽으로 이동 애니메이션
         }
-
-
         // 점수 표시
         scoreText.setText(String.valueOf(score));
-
         isClicked = true; // 클릭 플래그 설정
     }
 

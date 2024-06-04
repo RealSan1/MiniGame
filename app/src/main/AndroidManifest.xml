@@ -46,9 +46,6 @@
             android:name=".CapitalResult"
             android:exported="false" />
         <activity
-            android:name=".NumberOfQuestion"
-            android:exported="false" />
-        <activity
             android:name=".BlockPuzzle"
             android:exported="false" />
         <activity
@@ -71,6 +68,12 @@
             android:exported="false" />
         <activity
             android:name=".MsTest"
+            android:exported="false" />
+        <activity
+            android:name=".CountryQA"
+            android:exported="false" />
+        <activity
+            android:name=".CountryResult"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
