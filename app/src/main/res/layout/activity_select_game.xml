@@ -358,7 +358,7 @@
                 </FrameLayout>
 
                 <FrameLayout
-                    android:id="@+id/capitalGame_6"
+                    android:id="@+id/lolUltGame"
                     android:layout_width="330dp"
                     android:layout_height="match_parent"
                     android:layout_gravity="center_vertical"
@@ -366,7 +366,7 @@
                     android:layout_marginTop="14dp"
                     android:layout_marginBottom="14dp"
                     android:background="@drawable/buttonshape2"
-                    android:onClick="Capital">
+                    android:onClick="LOLUlt">
 
                     <ImageView
                         android:id="@+id/capital_img_6"
@@ -375,25 +375,25 @@
                         android:layout_gravity="start"
                         android:layout_marginStart="15dp"
                         android:layout_marginTop="4dp"
-                        app:srcCompat="@drawable/capital" />
+                        app:srcCompat="@drawable/lolult" />
 
                     <TextView
-                        android:id="@+id/capital_text_6"
+                        android:id="@+id/lolUlt_text"
                         android:layout_width="185dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center|top"
                         android:layout_marginTop="3dp"
-                        android:text="수도 맞추기"
+                        android:text="롤 궁극기 맞히기"
                         android:textColor="#000000"
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/capital_text2_6"
+                        android:id="@+id/lolUlt_text2"
                         android:layout_width="189dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom|center"
                         android:layout_marginBottom="3dp"
-                        android:text="지능 테스트" />
+                        android:text="롤잘알 테스트" />
                 </FrameLayout>
 
                 <FrameLayout

@@ -26,6 +26,12 @@
         <activity
             android:name=".Swipe"
             android:exported="false" />
+        <activity
+            android:name=".LOLUltQA"
+            android:exported="false" />
+        <activity
+            android:name=".LOLUltResult"
+            android:exported="false" />
 
         <meta-data
             android:name="com.google.android.actions"
@@ -39,9 +45,6 @@
             android:exported="false"
             android:label="@string/title_activity_person_qa"
             android:theme="@style/Theme.MiniGame_Application" />
-        <activity
-            android:name=".RankSelect"
-            android:exported="false" />
         <activity
             android:name=".CapitalResult"
             android:exported="false" />

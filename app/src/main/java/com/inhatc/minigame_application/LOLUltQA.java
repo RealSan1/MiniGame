@@ -34,38 +34,36 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-public class CapitalQA extends AppCompatActivity {
+public class LOLUltQA extends AppCompatActivity {
     TextView question, answer, result, timerTV, num, gameName;
     EditText edtAnswer;
     Button btnNext, btnCommit, btnUp, btnDown, checkbtn;
-    ImageView imgFlag;
-    List<Map<String, String>> findFlag;
+    ImageView imgPerson;
+    List<Map<String, String>> findImg;
     private static final long START_TIME_IN_MILLIS = 15000;
     SocketThread skThread;
     int count = 0; // 문제 진행률 카운터
     int correct = 0; // 문제 정답률 카운터
     List<Map.Entry<String, String>> randomDataList;
     CountDownTimer countDownTimer;
+
     Dialog myDialog;
-
     int numOfQ, temp;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_capital_qa);
+        setContentView(R.layout.activity_lol_ult_qa);
 
 
-
-        question = (TextView) findViewById(R.id.txtQuestion);
-        answer = (TextView) findViewById(R.id.txtAnswer);
-        result = (TextView) findViewById(R.id.txtResult);
-        timerTV = (TextView) findViewById(R.id.txtTimer);
-        edtAnswer = (EditText) findViewById(R.id.editTextAnswer);
-        btnCommit = (Button) findViewById(R.id.btnCommit);
-        btnNext = (Button) findViewById(R.id.btnNext);
-        imgFlag = (ImageView) findViewById(R.id.imgFlag);
+        question = (TextView)findViewById(R.id.txtQuestion);
+        answer = (TextView)findViewById(R.id.txtAnswer);
+        result = (TextView)findViewById(R.id.txtResult);
+        timerTV = (TextView)findViewById(R.id.txtTimer);
+        edtAnswer = (EditText)findViewById(R.id.editTextAnswer);
+        btnCommit = (Button)findViewById(R.id.btnCommit);
+        btnNext = (Button)findViewById(R.id.btnNext);
+        imgPerson = (ImageView)findViewById(R.id.imgPerson);
 
         //팝업창 설정 시작
         myDialog = new Dialog(this);
@@ -77,7 +75,7 @@ public class CapitalQA extends AppCompatActivity {
         btnUp = (Button) myDialog.findViewById(R.id.countupbtn);
         btnDown = (Button) myDialog.findViewById(R.id.countdownbtn);
         checkbtn = (Button) myDialog.findViewById(R.id.NumOfQuestionInputBtn);
-        gameName.setText("수도 맞히기");
+        gameName.setText("롤 궁극기 맞히기");
         myDialog.show();
 
         btnUp.setOnClickListener(new View.OnClickListener() {
@@ -109,7 +107,7 @@ public class CapitalQA extends AppCompatActivity {
                 skThread = SocketThread.getInstance();
 
                 //서버로 부터 받아온 mysql json형식의 데이터
-                String data = skThread.getq_a();
+                String data = skThread.getLOLUltQA();
                 Log.d("CapitalQA", "Data received: " + data);
 
                 // DB에서 가져온 데이터 파싱해 Map 형태로 받아옴
@@ -155,27 +153,26 @@ public class CapitalQA extends AppCompatActivity {
 
     // DB에서 가져온 데이터 파싱
     protected Map<String, String> ParseData(String json) {
-        Map<String, String> countryCapitalMap = new HashMap<>();
-        findFlag = new ArrayList<>();
-        Map<String, String> engCountryMap = new HashMap<>();
+        Map<String, String> champMap = new HashMap<>();
+        findImg = new ArrayList<>();
+        Map<String, String> engChampMap = new HashMap<>();
         try {
             JSONArray jsonArray = new JSONArray(json);
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
-                String country = jsonObject.getString("country");
-                String capital = jsonObject.getString("capital");
-                countryCapitalMap.put(country, capital);
+                String champName = jsonObject.getString("champ_name");
+                String champUlt = jsonObject.getString("champ_ult");
+                champMap.put(champName, champUlt);
 
-                String countryEng = jsonObject.getString("country_eng");
-                engCountryMap.put(country, countryEng);
-                findFlag.add(engCountryMap);
+                String champEng = jsonObject.getString("champ_eng");
+                engChampMap.put(champName, champEng);
+                findImg.add(engChampMap);
             }
-
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        return countryCapitalMap;
+        return champMap;
     }
 
     // DB에서 가져온 데이터를 원하는 수만큼 랜덤으로 추출
@@ -187,7 +184,7 @@ public class CapitalQA extends AppCompatActivity {
     }
 
     // 타이머 설정
-    public void setTimer() {
+    public void setTimer(){
         timerTV.setTextColor(Color.WHITE);
         countDownTimer = new CountDownTimer(START_TIME_IN_MILLIS, 1000) {
             @Override
@@ -197,11 +194,10 @@ public class CapitalQA extends AppCompatActivity {
                 if (secondsRemaining < 6) {
                     timerTV.setTextColor(Color.RED);
                 }
-                if (secondsRemaining == 0) {
+                if(secondsRemaining == 0){
                     onFinish();
                 }
             }
-
             @Override
             public void onFinish() {
                 timerTV.setText("종료");
@@ -209,7 +205,6 @@ public class CapitalQA extends AppCompatActivity {
             }
         }.start();
     }
-
     private void resetTimer() {
         if (countDownTimer != null) {
             countDownTimer.cancel();
@@ -217,32 +212,35 @@ public class CapitalQA extends AppCompatActivity {
         setTimer();
     }
 
+
     // 문제 생성
     private void setQuestion(int index) {
         Map.Entry<String, String> entry = randomDataList.get(index);
-        question.setText(entry.getKey());
+        question.setVisibility(View.INVISIBLE);
+        question.setText(entry.getKey() + " 궁극기");
         answer.setText(entry.getValue());
 
         // 이미지 탐색 후 설정
-        String countryEng = "";
-        for (int i = 0; i < findFlag.size(); i++) {
-            Map<String, String> engMap = findFlag.get(i);
-            countryEng = engMap.get(entry.getKey()).toLowerCase();
+        String champEng = "";
+        for (int i = 0; i < findImg.size(); i++) {
+            Map<String, String> engMap = findImg.get(i);
+            champEng = engMap.get(entry.getKey()).toLowerCase();
         }
-        System.out.println(countryEng);
-        int resId = getResources().getIdentifier(countryEng, "drawable", getPackageName());
+        System.out.println(champEng);
+        int resId = getResources().getIdentifier(champEng, "drawable", getPackageName());
         System.out.println(resId);
         BitmapDrawable img = (BitmapDrawable) getResources().getDrawable(resId);
-        imgFlag.setImageDrawable(img);
+        imgPerson.setImageDrawable(img);
     }
 
-    public void Commit(View view) {
-        if (countDownTimer != null) {
+
+    public void Commit(View view){
+        if(countDownTimer != null){
             countDownTimer.cancel();
         }
 
-        String userAnswer = edtAnswer.getText().toString().trim();
-        String correctAnswer = randomDataList.get(count).getValue();
+        String userAnswer = edtAnswer.getText().toString().replaceAll(" ", "");
+        String correctAnswer = randomDataList.get(count).getValue().replaceAll(" ", "");;
 
         if (userAnswer.equalsIgnoreCase(correctAnswer)) {
             result.setText("정답!");
@@ -253,6 +251,7 @@ public class CapitalQA extends AppCompatActivity {
             result.setText("오답!");
         }
 
+        question.setVisibility(View.VISIBLE);
         result.setVisibility(View.VISIBLE);
         edtAnswer.setVisibility(View.INVISIBLE);
         answer.setVisibility(View.VISIBLE);
@@ -260,7 +259,7 @@ public class CapitalQA extends AppCompatActivity {
         btnNext.setVisibility(View.VISIBLE);
     }
 
-    public void Next(View view) {
+    public void Next(View view){
         count++;
         if (count < randomDataList.size()) {
             setQuestion(count);
@@ -268,12 +267,13 @@ public class CapitalQA extends AppCompatActivity {
             result.setVisibility(View.INVISIBLE);
             edtAnswer.setVisibility(View.VISIBLE);
             edtAnswer.setText("");
+            question.setVisibility(View.INVISIBLE);
             answer.setVisibility(View.INVISIBLE);
             btnCommit.setVisibility(View.VISIBLE);
             btnNext.setVisibility(View.INVISIBLE);
         } else {
             // 모든 문제를 다 푼 경우 결과 페이지로 이동
-            Intent intent = new Intent(CapitalQA.this, CapitalResult.class);
+            Intent intent = new Intent(LOLUltQA.this, LOLUltResult.class);
             intent.putExtra("correct", correct);
             intent.putExtra("total", randomDataList.size());
             startActivity(intent);
