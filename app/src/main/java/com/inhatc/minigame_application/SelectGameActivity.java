@@ -120,5 +120,4 @@ public class SelectGameActivity extends AppCompatActivity {
         }
     }
 
-
 }
