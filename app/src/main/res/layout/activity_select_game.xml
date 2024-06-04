@@ -6,14 +6,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#4193FC"
+    android:fitsSystemWindows="true"
     tools:context=".SelectGameActivity">
 
     <FrameLayout
         android:id="@+id/GameList"
         android:layout_width="374dp"
         android:layout_height="814dp"
-        android:layout_margin="25dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="0dp"
         android:background="@drawable/white_buttonshape"
+        android:paddingTop="10dp"
+        android:paddingStart="0dp"
+        android:paddingEnd="0dp"
+        android:paddingBottom="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
