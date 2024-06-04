@@ -34,7 +34,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-public class CapitalQA extends AppCompatActivity {
+public class CountryQA extends AppCompatActivity {
     TextView question, answer, result, timerTV, num, gameName;
     EditText edtAnswer;
     Button btnNext, btnCommit, btnUp, btnDown, checkbtn;
@@ -54,7 +54,7 @@ public class CapitalQA extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_capital_qa);
+        setContentView(R.layout.activity_country_qa);
 
 
 
@@ -77,7 +77,7 @@ public class CapitalQA extends AppCompatActivity {
         btnUp = (Button) myDialog.findViewById(R.id.countupbtn);
         btnDown = (Button) myDialog.findViewById(R.id.countdownbtn);
         checkbtn = (Button) myDialog.findViewById(R.id.NumOfQuestionInputBtn);
-        gameName.setText("수도 맞히기");
+        gameName.setText("나라 이름 맞히기");
         myDialog.show();
 
         btnUp.setOnClickListener(new View.OnClickListener() {
@@ -220,8 +220,7 @@ public class CapitalQA extends AppCompatActivity {
     // 문제 생성
     private void setQuestion(int index) {
         Map.Entry<String, String> entry = randomDataList.get(index);
-        question.setText(entry.getKey());
-        answer.setText(entry.getValue());
+        answer.setText(entry.getKey());
 
         String countryEng = "";
         for (int i = 0; i < findFlag.size(); i++) {
@@ -241,7 +240,7 @@ public class CapitalQA extends AppCompatActivity {
         }
 
         String userAnswer = edtAnswer.getText().toString().trim();
-        String correctAnswer = randomDataList.get(count).getValue();
+        String correctAnswer = randomDataList.get(count).getKey();
 
         if (userAnswer.equalsIgnoreCase(correctAnswer)) {
             result.setText("정답!");
@@ -272,7 +271,7 @@ public class CapitalQA extends AppCompatActivity {
             btnNext.setVisibility(View.INVISIBLE);
         } else {
             // 모든 문제를 다 푼 경우 결과 페이지로 이동
-            Intent intent = new Intent(CapitalQA.this, CapitalResult.class);
+            Intent intent = new Intent(CountryQA.this, CountryResult.class);
             intent.putExtra("correct", correct);
             intent.putExtra("total", randomDataList.size());
             startActivity(intent);

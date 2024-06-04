@@ -18,7 +18,7 @@
 
         <TextView
             android:id="@+id/inputGameName"
-            android:layout_width="165dp"
+            android:layout_width="wrap_content"
             android:layout_height="108dp"
             android:layout_gravity="center|top"
             android:layout_marginTop="100dp"
@@ -91,17 +91,20 @@
             android:textSize="30dp"
             android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/inputScore"
-            android:layout_width="217dp"
-            android:layout_height="79dp"
-            android:layout_gravity="center"
-            android:layout_marginBottom="30dp"
-            android:text="Score"
-            android:textAlignment="center"
-            android:textSize="30dp"
-            android:textStyle="bold" />
     </FrameLayout>
+
+    <TextView
+        android:id="@+id/inputScore"
+        android:layout_width="217dp"
+        android:layout_height="79dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="30dp"
+        android:text="Score"
+        android:textAlignment="center"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        app:layout_anchor="@+id/NumOfQuestionFrame"
+        app:layout_anchorGravity="center" />
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
