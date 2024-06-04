@@ -111,11 +111,11 @@ public class SelectGameActivity extends AppCompatActivity {
     public void Swipe(View view){
         if(value == 0){
             intent = new Intent(getApplicationContext(), RankActivity.class);
-            RankActivity.receiveGamename("롤 궁극기 맞히기");
+            RankActivity.receiveGamename("좌로우로");
             startActivity(intent);
         }else if(value == 1) {
             intent = new Intent(getApplicationContext(), Swipe.class);
-            intent.putExtra("gameType", "LOLUlt");
+            intent.putExtra("gameType", "Swipe");
             startActivity(intent);
         }
     }

@@ -37,7 +37,7 @@ public class Swipe extends AppCompatActivity implements View.OnClickListener{
     Dialog myDialog;
     private SocketThread skThread = SocketThread.getInstance();
 
-    private static final long START_TIME_IN_MILLIS = 5000;
+    private static final long START_TIME_IN_MILLIS = 15000;
 
 
     @Override

@@ -31,7 +31,7 @@ public class BlockPuzzle extends AppCompatActivity implements View.OnClickListen
     ImageView BImg1, BImg2, BImg3, BImg4, BImg5, Combo;
     int ColorR, ColorG, ColorB, randomColor, score;
     ArrayList<Integer> list = new ArrayList<>();
-    private static final long START_TIME_IN_MILLIS = 5000;
+    private static final long START_TIME_IN_MILLIS = 15000;
     int count = 0;
     Random random = new Random();
     Boolean isClicked = false;
