@@ -34,14 +34,18 @@ public class RankActivity extends AppCompatActivity {
         System.out.println("GameName 값 : "+GameName);
 
         System.out.println("json값 :"+jsonData);
+        toolbarTitle.setText(GameName);
+/*
 
         String[] apptitle = GameName.split(" ");
 
         if (apptitle.length >= 2) {
             toolbarTitle.setText(apptitle[0] + " " + apptitle[1]);
         } else {
-            toolbarTitle.setText(GameName); // 전체 이름을 사용
+            // 전체 이름을 사용
+            toolbarTitle.setText(GameName);
         }
+*/
 
         /*
         for(int i = 0; i<jsonData.length; i+=4){

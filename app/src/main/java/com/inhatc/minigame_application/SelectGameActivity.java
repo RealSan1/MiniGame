@@ -68,7 +68,7 @@ public class SelectGameActivity extends AppCompatActivity {
             RankActivity.receiveGamename("수도 맞히기");
             startActivity(intent);
         }else if(value == 1) {
-            intent = new Intent(getApplicationContext(), NumberOfQuestion.class);
+            intent = new Intent(getApplicationContext(), CapitalQA.class);
             intent.putExtra("gameType", "Capital");
             startActivity(intent);
         }
@@ -91,7 +91,7 @@ public class SelectGameActivity extends AppCompatActivity {
             RankActivity.receiveGamename("인물 맞히기");
             startActivity(intent);
         }else if(value == 1) {
-            intent = new Intent(getApplicationContext(), NumberOfQuestion.class);
+            intent = new Intent(getApplicationContext(), PersonQA.class);
             intent.putExtra("gameType", "Person");
             startActivity(intent);
         }
@@ -107,4 +107,41 @@ public class SelectGameActivity extends AppCompatActivity {
             startActivity(intent);
         }
     }
+
+    public void Swipe(View view){
+        if(value == 0){
+            intent = new Intent(getApplicationContext(), RankActivity.class);
+            RankActivity.receiveGamename("롤 궁극기 맞히기");
+            startActivity(intent);
+        }else if(value == 1) {
+            intent = new Intent(getApplicationContext(), Swipe.class);
+            intent.putExtra("gameType", "LOLUlt");
+            startActivity(intent);
+        }
+    }
+
+    public void Country(View view){
+        if(value == 0){
+            intent = new Intent(getApplicationContext(), RankActivity.class);
+            RankActivity.receiveGamename("나라 이름 맞히기");
+            startActivity(intent);
+        }else if(value == 1) {
+            intent = new Intent(getApplicationContext(), CountryQA.class);
+            intent.putExtra("gameType", "Country");
+            startActivity(intent);
+        }
+    }
+
+    public void LOLUlt(View view){
+        if(value == 0){
+            intent = new Intent(getApplicationContext(), RankActivity.class);
+            RankActivity.receiveGamename("롤 궁극기 맞히기");
+            startActivity(intent);
+        }else if(value == 1) {
+            intent = new Intent(getApplicationContext(), LOLUltQA.class);
+            intent.putExtra("gameType", "LOLUlt");
+            startActivity(intent);
+        }
+    }
+
 }
