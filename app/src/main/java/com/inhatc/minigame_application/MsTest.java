@@ -142,12 +142,12 @@ public class MsTest extends AppCompatActivity implements View.OnClickListener{
         if(BtnColor.getColor() == Color.GREEN){
 //            i++;
             afterTime = System.currentTimeMillis(); // 코드 실행 후에 시간
-            elapsedTime = afterTime - beforeTime;
+            elapsedTime = afterTime - beforeTime; //반응속도 시간
             list.add(elapsedTime);
             listSum = 0;
             for (Double value : list) listSum += value;
             result = listSum / list.size();
-            Text.setText(String.format("%.2f MS", result));
+            Text.setText(String.format("%.2f MS", elapsedTime));
             Btn.setBackgroundColor(Color.BLUE);
         } else{
 //            i--;

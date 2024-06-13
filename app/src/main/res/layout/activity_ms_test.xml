@@ -82,7 +82,7 @@
         android:layout_width="268dp"
         android:layout_height="67dp"
         android:layout_marginBottom="44dp"
-        android:text="평균 MS"
+        android:text="-- MS"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="35dp"
