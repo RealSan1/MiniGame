@@ -86,7 +86,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom|center"
                         android:layout_marginBottom="3dp"
-                        android:text="신체능력 테스트" />
+                        android:text="주변 환경 활용" />
                 </FrameLayout>
 
                 <FrameLayout
@@ -283,7 +283,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom|center"
                         android:layout_marginBottom="3dp"
-                        android:text="신체능력 테스트" />
+                        android:text="퍼즐 게임" />
                 </FrameLayout>
 
                 <FrameLayout
