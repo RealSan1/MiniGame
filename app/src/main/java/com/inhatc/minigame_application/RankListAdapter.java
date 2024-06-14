@@ -35,16 +35,40 @@ public class RankListAdapter extends RecyclerView.Adapter<RankListAdapter.ViewHo
         holder.txtName.setText(currentItem.getName());
         holder.txtScore.setText(String.valueOf(currentItem.getScore()));
 
-        // Check if the current rank is duplicated
+        if(currentItem.getRank() <= 3){
+            switch (currentItem.getRank()) {
+                case 1:
+                    holder.imgRank.setImageResource(R.drawable.first);
+                    break;
+                case 2:
+                    holder.imgRank.setImageResource(R.drawable.second);
+                    break;
+                case 3:
+                    holder.imgRank.setImageResource(R.drawable.third);
+                    break;
+            }
+            holder.imgRank.setVisibility(View.VISIBLE);
+            holder.txtRank.setVisibility(View.GONE);
+        }else{
+            holder.txtRank.setText(String.valueOf(currentItem.getRank()));
+            holder.imgRank.setVisibility(View.GONE);
+            holder.txtRank.setVisibility(View.VISIBLE);
+        }
+
+
+
+        /*
+        // 현재 순위가 중복되는지 체크
         boolean isDuplicateRank = false;
         for (int i = 0; i < listData.length; i++) {
             if (i != position && listData[i].getRank() == currentItem.getRank()) {
                 isDuplicateRank = true;
+                //중복됨
                 break;
             }
         }
 
-        // Show image only for the first entry with this rank if not duplicated
+        // 중복되는 순위가 없다면 isDuplicateRank == true 인 경우 순위의 첫 번째 항목에 대해서만 이미지 표시
         if (!isDuplicateRank && currentItem.getRank() <= 3) {
             switch (currentItem.getRank()) {
                 case 1:
@@ -65,6 +89,7 @@ public class RankListAdapter extends RecyclerView.Adapter<RankListAdapter.ViewHo
             holder.imgRank.setVisibility(View.GONE);
             holder.txtRank.setVisibility(View.VISIBLE);
         }
+         */
     }
 
     @Override
