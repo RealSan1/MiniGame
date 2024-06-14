@@ -132,6 +132,10 @@ public class Tetris extends AppCompatActivity {
 
         myDialog = new Dialog(this);
 
+        //게임판 생성
+        GridLayout tetrisBoard = findViewById(R.id.tetrisBoard);
+        initGridBoard(tetrisBoard);
+
         //시작 버튼 클릭 설정
         startBtn.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -151,15 +155,11 @@ public class Tetris extends AppCompatActivity {
 
     private void GameStart(){
         scoreTV = findViewById(R.id.txtScore);//점수
-        scoreTV.setText("000000");
+        scoreTV.setText("00000");
         realScore = 0;
         setTimer();//타이머 시작
 
         System.out.println("게임 시작 ");
-
-        //게임판 생성
-        GridLayout tetrisBoard = findViewById(R.id.tetrisBoard);
-        initGridBoard(tetrisBoard);
 
         //7가지의 블럭을 생성 후 이를 토대로 랜덤 가져오기
         s_blocks = Seven_Block.createBlocks();
@@ -588,22 +588,22 @@ public class Tetris extends AppCompatActivity {
         switch(score){
             case 1:
                 realScore+=100;
-                formattedScore = String.format("%06d", realScore);
+                formattedScore = String.format("%05d", realScore);
                 scoreTV.setText(formattedScore);
                 break;
             case 2:
                 realScore+=300;
-                formattedScore = String.format("%06d", realScore);
+                formattedScore = String.format("%05d", realScore);
                 scoreTV.setText(formattedScore);
                 break;
             case 3:
                 realScore+=500;
-                formattedScore = String.format("%06d", realScore);
+                formattedScore = String.format("%05d", realScore);
                 scoreTV.setText(formattedScore);
                 break;
             case 4:
                 realScore+=800;
-                formattedScore = String.format("%06d", realScore);
+                formattedScore = String.format("%05d", realScore);
                 scoreTV.setText(formattedScore);
                 break;
             default:
@@ -663,5 +663,12 @@ public class Tetris extends AppCompatActivity {
             handler = null;
             runnable = null;
         }
+    }
+
+    //뒤로가기 종료 시
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        stopBlock();
     }
 }
