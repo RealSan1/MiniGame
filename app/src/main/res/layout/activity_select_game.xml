@@ -30,6 +30,7 @@
             android:id="@+id/textView2"
             android:layout_width="match_parent"
             android:layout_height="46dp"
+            android:layout_marginTop="0dp"
             android:background="@drawable/layout"
             android:padding="9dp"
             android:text="  게임 리스트"

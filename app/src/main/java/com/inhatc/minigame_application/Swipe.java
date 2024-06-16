@@ -114,7 +114,7 @@ public class Swipe extends AppCompatActivity implements View.OnClickListener{
                     EditText inputName = (EditText)myDialog.findViewById(R.id.inputName);
 
                     Button rankingInput = (Button)myDialog.findViewById(R.id.input);
-                    gameName.setText("스와이프");
+                    gameName.setText("좌로우로");
 
                     inputScore.setText(String.valueOf(score));
                     rankingInput.setOnClickListener(new View.OnClickListener() {

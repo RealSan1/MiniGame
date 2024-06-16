@@ -118,12 +118,11 @@ public class SocketThread extends Thread{
         try{
             rankMethod = true;
             System.out.println("랭킹 가져오기 메서드 진입 성공");
-            outData = "3"+","+"Select Ranking"+","+gameName;//3일경우 SQL SELECT문 실행
+            outData = "3"+","+"Select Ranking"+","+gameName;
             ckMethod=1;
             trigger=true;//스레드 동작 시작
             System.out.println("ThAccess="+ThAccess+"  ckMethod="+ckMethod);
             while(ThAccess.get() != 1){
-                //System.out.println("소켓스레드 진행 중 메소드 wait");
                 wait();
             }
             System.out.println("랭킹 가져오기 메소드 끝");
@@ -146,7 +145,6 @@ public class SocketThread extends Thread{
             trigger = true;
             System.out.println("ThAccess="+ThAccess+"  ckMethod="+ckMethod);
             while(ThAccess.get() != 1){
-                //System.out.println("소켓스레드 진행 중 메소드 wait");
                 wait();
             }
             System.out.println("문제와 답 가져오기 메소드 끝");
@@ -168,7 +166,6 @@ public class SocketThread extends Thread{
             trigger = true;
             System.out.println("ThAccess="+ThAccess+"  ckMethod="+ckMethod);
             while(ThAccess.get() != 1){
-                //System.out.println("소켓스레드 진행 중 메소드 wait");
                 wait();
             }
             System.out.println("문제와 답 가져오기 메소드 끝");
@@ -190,7 +187,6 @@ public class SocketThread extends Thread{
             trigger = true;
             System.out.println("ThAccess="+ThAccess+"  ckMethod="+ckMethod);
             while(ThAccess.get() != 1){
-                //System.out.println("소켓스레드 진행 중 메소드 wait");
                 wait();
             }
             System.out.println("문제와 답 가져오기 메소드 끝");
