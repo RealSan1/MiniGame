@@ -158,7 +158,7 @@
             android:layout_gravity="center|top"
             android:layout_marginTop="50dp"
             android:padding="15dp"
-            android:text="1분 동안 7가지의 블럭을가지고\n블럭의 가로줄을 틈 없이 완성하여 \n높은 점수를 획득하세요\n\n 1줄 : 100점\n2줄 : 300점\n3줄 : 500점\n4줄 : 800점"
+            android:text="1분 동안 7가지의 블럭을 가지고\n블럭의 가로줄을 틈 없이 완성하여 \n높은 점수를 획득하세요\n\n 1줄 : 100점\n2줄 : 300점\n3줄 : 500점\n4줄 : 800점"
             android:textAlignment="center"
             android:textColor="#FFFFFF"
             android:textSize="20sp"
