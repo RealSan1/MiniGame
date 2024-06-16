@@ -29,6 +29,7 @@ import java.util.Random;
 public class FindColor extends AppCompatActivity implements View.OnClickListener {
 
     private static final int pic_id = 123;
+    //아이디 생성
     Button Cbtn;
     HashMap<String, Integer> ColorMap = new HashMap<String, Integer>();
     ImageView imageView;

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#4193FC"
+    android:onClick="Click"
+    tools:context=".MsTest">
+
+    <TextView
+        android:id="@+id/MsTestEx"
+        android:layout_width="340dp"
+        android:layout_height="wrap_content"
+        android:background="#888686"
+        android:padding="16dp"
+        android:text="시각적 자극에 대한 반응 속도를 알 수 있는 간단한 테스트입니다. \n\n 빨간색 박스가 초록색으로 변할 때 최대한 빨리 클릭을 해주세요. \n\n 시각적 자극에 대한 반응 속도는 평균 0.25초 입니다.\n\n 대부분 훈련을 통해 0.2초에 \n도달할 수 있죠. \n\n 시각적 자극 반응 속도의 \n최고 기록은 0.12초 정도로\n 굉장히 빠릅니다."
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="23sp"
+        android:textStyle="bold"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.545"
+        tools:visibility="gone" />
+
+    <TextView
+        android:id="@+id/txtTouch"
+        android:layout_width="303dp"
+        android:layout_height="36dp"
+        android:layout_marginBottom="32dp"
+        android:text="화면을 터치하세요"
+        android:textAlignment="center"
+        android:textColor="#DEFFFFFF"
+        android:textSize="24sp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:visibility="invisible"/>
+
+    <Button
+        android:id="@+id/MsTestBtn"
+        android:layout_width="245dp"
+        android:layout_height="253dp"
+        android:background="#FF0000"
+        android:text="Click"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="75dp"
+
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.533"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/MsTestTitle"
+        android:layout_width="267dp"
+        android:layout_height="75dp"
+        android:layout_marginBottom="164dp"
+        android:text="반응속도 테스트"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="35dp"
+        android:textStyle="bold"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/MsTestBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/MsText"
+        android:layout_width="268dp"
+        android:layout_height="67dp"
+        android:layout_marginBottom="44dp"
+        android:text="-- MS"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="35dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/MsTestBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:visibility="visible" />
+
+    <Button
+        android:id="@+id/MsStartBtn"
+        android:layout_width="88dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:backgroundTint="#94F128"
+        android:text="Start"
+        android:textStyle="bold"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/MsTestBtn"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/MsTextChance"
+        android:layout_width="0dp"
+        android:layout_height="49dp"
+        android:layout_marginBottom="140dp"
+        android:text="□ □ □ "
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="40dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:visibility="visible" />
+</androidx.constraintlayout.widget.ConstraintLayout>

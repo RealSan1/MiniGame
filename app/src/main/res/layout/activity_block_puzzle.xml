@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#4193FC"
+    tools:context=".BlockPuzzle">
+
+    <TextView
+        android:id="@+id/txtTimer"
+        android:layout_width="103dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="186dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="186dp"
+        android:layout_marginBottom="78dp"
+        android:text="타이머"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/BlockBtnB"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginBottom="100dp"
+        android:background="@drawable/roundbutton"
+        android:elevation="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:visibility="invisible" />
+
+    <Button
+        android:id="@+id/BlockBtnR"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginBottom="100dp"
+        android:background="@drawable/roundbutton"
+        android:elevation="20dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/BlockBtnG"
+        app:layout_constraintHorizontal_bias="0.036"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:visibility="invisible" />
+
+    <Button
+        android:id="@+id/BlockBtnG"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginBottom="100dp"
+        android:background="@drawable/roundbutton"
+        android:elevation="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/BlockBtnB"
+        app:layout_constraintHorizontal_bias="0.739"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/BlockScoreText"
+        android:layout_width="147dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="72dp"
+        android:text="Score"
+        android:textAlignment="center"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <FrameLayout
+        android:id="@+id/BlockBackground"
+        android:layout_width="410dp"
+        android:layout_height="433dp"
+        android:layout_marginTop="45dp"
+        android:background="#F8F3F3"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/BlockScoreText"
+        tools:visibility="visible">
+
+        <ImageView
+            android:id="@+id/BlockImg3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="15dp"
+            app:srcCompat="@drawable/blue" />
+
+        <ImageView
+            android:id="@+id/BlockImg1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|top"
+            android:layout_margin="20dp"
+            app:srcCompat="@drawable/green" />
+
+        <ImageView
+            android:id="@+id/BlockImg5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
+            android:layout_margin="20dp"
+            app:srcCompat="@drawable/red" />
+
+        <ImageView
+            android:id="@+id/BlockImg4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
+            android:layout_marginBottom="100dp"
+            app:srcCompat="@drawable/blue" />
+
+        <ImageView
+            android:id="@+id/BlockImg2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|top"
+            android:layout_marginTop="100dp"
+            app:srcCompat="@drawable/blue" />
+
+        <ImageView
+            android:id="@+id/BlockImgFrame"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/frame"
+            tools:visibility="visible" />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/popup"
+        android:layout_width="325dp"
+        android:layout_height="511dp"
+        android:background="@android:color/darker_gray"
+        android:foregroundGravity="center_vertical"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.4"
+        tools:visibility="gone">
+
+        <TextView
+            android:id="@+id/popUpBlockText"
+            android:layout_width="match_parent"
+            android:layout_height="302dp"
+            android:layout_gravity="center|top"
+            android:layout_marginTop="50dp"
+            android:padding="15dp"
+            android:text="15초 동안 네모 프레임의 색과 일치하는 버튼을 누르는 게임입니다. \n\n연속적으로 블럭을 맞춘다면 \n가산점이 있습니다. \n\n 친구들과 함께 게임을 하여 누가 더 높은 점수를 얻을 수 있는지 \n 경쟁해보세요."
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            tools:visibility="visible" />
+
+        <Button
+            android:id="@+id/startBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
+            android:layout_marginBottom="100dp"
+            android:background="@drawable/buttonshape"
+            android:onClick="start"
+            android:text="시작"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </FrameLayout>
+
+    <ImageView
+        android:id="@+id/combo"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center|top"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/BlockBackground"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/BlockScoreText"
+        app:srcCompat="@drawable/combo"
+        tools:visibility="visible" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

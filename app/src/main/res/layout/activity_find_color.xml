@@ -8,23 +8,11 @@
     android:background="#4193FC"
     tools:context=".FindColor">
 
-    <Button
-        android:id="@+id/Cbtn"
-        android:layout_width="107dp"
-        android:layout_height="70dp"
-        app:icon="@android:drawable/ic_menu_camera"
-        app:iconSize="60dp"
-        app:iconTint="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.842"
-        app:strokeColor="#FFFFFF" />
-
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="0dp"
         android:layout_height="502dp"
+        android:layout_marginTop="30dp"
         android:layout_weight="1"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -37,7 +25,8 @@
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="■"
+            android:layout_marginTop="4dp"
+            android:text="색깔"
             android:textAlignment="center"
             android:textColor="#000000"
             android:textSize="48sp" />
@@ -45,32 +34,50 @@
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:background="#FFFFFF"
+            android:textAlignment="center" />
 
     </LinearLayout>
 
     <Button
         android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="49dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginBottom="28dp"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="252dp"
+        android:layout_marginBottom="64dp"
+        android:background="@drawable/buttonshape"
         android:text="제출"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/Cbtn"
-        app:layout_constraintHorizontal_bias="0.388"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
+        android:id="@+id/Cbtn"
+        android:layout_width="107dp"
+        android:layout_height="70dp"
+        android:background="@android:drawable/ic_menu_camera"
+        app:icon="@android:drawable/ic_menu_camera"
+        app:iconSize="60dp"
+        app:iconTint="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.509"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.819"
+        app:strokeColor="#FFFFFF" />
+
+    <Button
         android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="152dp"
-        android:layout_marginTop="28dp"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="252dp"
+        android:layout_marginBottom="64dp"
+        android:background="@drawable/buttonshape"
         android:onClick="Back"
         android:text="Back"
-        app:layout_constraintStart_toEndOf="@+id/button2"
-        app:layout_constraintTop_toBottomOf="@+id/Cbtn" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

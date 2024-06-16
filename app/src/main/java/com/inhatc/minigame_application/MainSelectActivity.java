@@ -24,8 +24,20 @@ public class MainSelectActivity extends AppCompatActivity {
         });
     }
 
-    public void SelectGames(View view) {
+    public void SelectRank(View view){
+        System.out.println("랭킹 검색");
         Intent intent = new Intent(getApplicationContext(), SelectGameActivity.class);
+        intent.putExtra("select",0);
+        intent.putExtra("type", "랭킹 보기");
         startActivity(intent);
     }
+
+    public void SelectGames(View view) {
+        System.out.println("게임 검색");
+        Intent intent = new Intent(getApplicationContext(), SelectGameActivity.class);
+        intent.putExtra("select", 1);
+        intent.putExtra("type", "플레이");
+        startActivity(intent);
+    }
+
 }

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/inputranking"
+    android:layout_width="340dp"
+    android:layout_height="465dp"
+    android:layout_gravity="center"
+    android:background="#e6e6fa"
+    android:orientation="vertical"
+    android:padding="5dp">
+
+    <FrameLayout
+        android:id="@+id/NumOfQuestionFrame"
+        android:layout_width="325dp"
+        android:layout_height="453dp"
+        android:layout_gravity="center_horizontal"
+        android:background="#afeeee">
+
+        <TextView
+            android:id="@+id/inputGameName"
+            android:layout_width="wrap_content"
+            android:layout_height="108dp"
+            android:layout_gravity="center|top"
+            android:layout_marginTop="100dp"
+            android:text="게임 이름"
+            android:textAlignment="center"
+            android:textSize="30dp"
+            android:textStyle="bold" />
+
+        <android.widget.Button
+            android:id="@+id/input"
+            android:layout_width="90sp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|end"
+            android:layout_marginTop="150dp"
+            android:layout_marginEnd="50dp"
+            android:background="@drawable/buttonshape2"
+            android:fontFamily="sans-serif-medium"
+            android:onClick="RankingInput"
+            android:text="등록"
+            android:textColor="#D8403E3E"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.146"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtCapScore"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <android.widget.Button
+            android:id="@+id/inputcancel"
+            android:layout_width="90sp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|start"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="150dp"
+            android:background="@drawable/buttonshape2"
+            android:fontFamily="sans-serif-medium"
+            android:onClick="Cancel"
+            android:text="취소"
+            android:textColor="#D8403E3E"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.146"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtCapScore"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <ImageView
+            android:id="@+id/inputRankingImg"
+            android:layout_width="396dp"
+            android:layout_height="196dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="175dp"
+            app:srcCompat="@drawable/finish" />
+
+        <EditText
+            android:id="@+id/inputName"
+            android:layout_width="208dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="220dp"
+            android:layout_marginBottom="150dp"
+            android:ems="10"
+            android:hint="닉네임"
+            android:inputType="text"
+            android:textAlignment="inherit"
+            android:textSize="30dp"
+            android:textStyle="bold" />
+
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/inputScore"
+        android:layout_width="217dp"
+        android:layout_height="79dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="30dp"
+        android:text="Score"
+        android:textAlignment="center"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        app:layout_anchor="@+id/NumOfQuestionFrame"
+        app:layout_anchorGravity="center" />
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"
+    android:layout_width="340dp"
+    android:layout_height="465dp"
+    android:layout_gravity="center"
+    android:background="#FFFFFF"
+    android:orientation="horizontal">
+
+    <FrameLayout
+        android:id="@+id/NumOfQuestionFrame"
+        android:layout_width="325dp"
+        android:layout_height="453dp"
+        android:layout_gravity="center"
+        android:background="#afeeee">
+
+        <TextView
+            android:id="@+id/inputGameName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|top"
+            android:layout_marginTop="50dp"
+            android:text="게임 이름"
+            android:textAlignment="center"
+            android:textSize="40dp"
+            android:textStyle="bold" />
+
+        <android.widget.Button
+            android:id="@+id/countupbtn"
+            android:layout_width="60sp"
+            android:layout_height="60sp"
+            android:layout_gravity="center|end"
+            android:layout_marginRight="50dp"
+            android:background="@android:drawable/ic_media_play"
+            android:fontFamily="sans-serif-medium"
+            android:onClick="countup" />
+
+        <android.widget.Button
+            android:id="@+id/countdownbtn"
+            android:layout_width="60sp"
+            android:layout_height="60sp"
+            android:layout_gravity="center|start"
+            android:layout_marginStart="50dp"
+            android:background="@android:drawable/ic_media_play"
+            android:fontFamily="sans-serif-medium"
+            android:onClick="countdown"
+            android:rotation="180" />
+
+        <TextView
+            android:id="@+id/NumOfQuestionSetting"
+            android:layout_width="109dp"
+            android:layout_height="60sp"
+            android:layout_gravity="center"
+            android:text="30"
+            android:textAlignment="center"
+            android:textSize="30dp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/NumOfQuestionInputBtn"
+            android:layout_width="142dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="150dp"
+            android:background="@drawable/white_buttonshape"
+            android:text="Start"
+            android:textSize="25dp"
+            android:textStyle="bold" />
+    </FrameLayout>
+</FrameLayout>
