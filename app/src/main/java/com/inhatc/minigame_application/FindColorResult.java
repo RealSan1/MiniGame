@@ -82,7 +82,7 @@ public class FindColorResult extends AppCompatActivity implements View.OnClickLi
         inputScore = myDialog.findViewById(R.id.inputScore);
         EditText inputName = myDialog.findViewById(R.id.inputName);
 
-        gameName.setText("색깔 맞추기");
+        gameName.setText("색깔 맞추기 게임");
         inputScore.setText(String.valueOf(score));
 
         Button rankingInput = myDialog.findViewById(R.id.input);
